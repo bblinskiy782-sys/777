@@ -3,924 +3,1051 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Яр-Сале — Пульс ледяной пустыни | Ямальский район</title>
-<meta name="description" content="Яр-Сале и Ямальский район — место, где вечная мерзлота встречает будущее. 700 000 оленей, тысячи километров тундры, живые традиции ненцев и арктический футуризм." />
-<script src="https://cdn.tailwindcss.com"></script>
+<title>YAMAL SLOTS · Крутись, тундра</title>
+<meta name="description" content="Игровые автоматы в ямальском стиле — олени, мамонты, северное сияние. Играй прямо в браузере." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-0:#0B0C10;
-    --bg-1:#1F2833;
-    --neon:#66FCF1;
-    --teal:#45A29E;
-    --purple:#8A2BE2;
-    --pink:#C850C0;
-  }
+:root{
+  --bg-0:#0B0C10; --bg-1:#1F2833;
+  --neon:#66FCF1; --teal:#45A29E;
+  --purple:#8A2BE2; --pink:#C850C0;
+  --gold:#FFD86B;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:#E8F1F2;
+  background:var(--bg-0);
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Unbounded',sans-serif;letter-spacing:-.02em}
 
-  *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+/* ========= AURORA BACKGROUND ========= */
+.bg{
+  position:fixed; inset:0; z-index:-1; overflow:hidden;
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(138,43,226,.45), transparent 60%),
+    radial-gradient(900px 500px at 10% 10%, rgba(69,162,158,.45), transparent 60%),
+    linear-gradient(180deg, #05070A 0%, #0B0C10 60%, #06080B 100%);
+}
+.aurora{
+  position:absolute; inset:-20%; filter:blur(60px) saturate(140%);
+  opacity:.55; mix-blend-mode:screen;
+  animation:aurora 18s ease-in-out infinite alternate;
+}
+.aurora.a1{background:
+  radial-gradient(40% 30% at 30% 50%, #66FCF1 0%, transparent 70%),
+  radial-gradient(35% 25% at 70% 40%, #45A29E 0%, transparent 70%),
+  radial-gradient(30% 20% at 50% 60%, #8A2BE2 0%, transparent 70%);}
+.aurora.a2{background:
+  radial-gradient(30% 20% at 20% 30%, #C850C0 0%, transparent 70%),
+  radial-gradient(40% 25% at 80% 60%, #66FCF1 0%, transparent 70%);
+  animation-duration:24s; opacity:.35;}
+@keyframes aurora{
+  0%{transform:translate3d(-5%,-3%,0) rotate(0) scale(1.05)}
+  50%{transform:translate3d(4%,2%,0) rotate(6deg) scale(1.15)}
+  100%{transform:translate3d(-3%,4%,0) rotate(-4deg) scale(1.08)}
+}
+.stars{position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%,#fff,transparent),
+    radial-gradient(1px 1px at 80% 10%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 40% 70%,#fff,transparent),
+    radial-gradient(1px 1px at 65% 85%,#fff,transparent),
+    radial-gradient(1px 1px at 10% 80%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 90% 50%,#fff,transparent),
+    radial-gradient(1px 1px at 55% 20%,#fff,transparent);
+  background-size:600px 600px; opacity:.55;
+  animation:twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle{from{opacity:.25}to{opacity:.7}}
 
-  html{ scroll-behavior:smooth; }
-  body{
-    background:var(--bg-0);
-    color:#E8F1F2;
-    font-family:'Inter', system-ui, sans-serif;
-    overflow-x:hidden;
-    cursor:default;
-  }
-  h1,h2,h3,.display{
-    font-family:'Unbounded', sans-serif;
-    letter-spacing:-0.02em;
-  }
+/* ========= LAYOUT ========= */
+.app{
+  max-width:980px; margin:0 auto; padding:24px 16px 40px;
+  width:100%;
+}
+header.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:18px;
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;font-weight:900;color:#0B0C10;
+  background:radial-gradient(circle at 30% 30%, #66FCF1, #8A2BE2 80%);
+  box-shadow:0 0 20px rgba(102,252,241,.5);
+}
+.logo-title{line-height:1.1}
+.logo-title b{font-family:'Unbounded',sans-serif;font-weight:900;letter-spacing:.15em;font-size:14px}
+.logo-title small{display:block;font-size:9px;letter-spacing:.3em;color:var(--neon);margin-top:2px}
 
-  /* ===== Custom cursor glow ===== */
-  .cursor-glow{
-    position:fixed; top:0; left:0;
-    width:560px; height:560px; pointer-events:none; z-index:1;
-    background:radial-gradient(circle, rgba(102,252,241,0.10) 0%, rgba(102,252,241,0) 60%);
-    transform:translate(-50%,-50%);
-    transition:transform .15s ease-out;
-    mix-blend-mode:screen;
-  }
+.balance{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px; border-radius:999px;
+  background:rgba(255,216,107,.08);
+  border:1px solid rgba(255,216,107,.3);
+  font-family:'Unbounded',sans-serif; font-weight:600;
+  color:var(--gold);
+  box-shadow:0 0 20px rgba(255,216,107,.1) inset;
+}
+.balance .coin{font-size:16px}
+.balance .amount{font-variant-numeric:tabular-nums}
 
-  /* ===== Aurora background ===== */
-  .aurora-wrap{
-    position:absolute; inset:0; overflow:hidden; z-index:0;
-    background:
-      radial-gradient(1200px 600px at 70% -10%, rgba(138,43,226,0.35), transparent 60%),
-      radial-gradient(900px 500px at 10% 10%, rgba(69,162,158,0.35), transparent 60%),
-      linear-gradient(180deg, #05070A 0%, #0B0C10 60%, #06080B 100%);
-  }
-  .aurora{
-    position:absolute; inset:-20%;
-    filter:blur(60px) saturate(140%);
-    opacity:.55;
-    mix-blend-mode:screen;
-    animation:aurora 18s ease-in-out infinite alternate;
-  }
-  .aurora.a1{
-    background:
-      radial-gradient(40% 30% at 30% 50%, #66FCF1 0%, transparent 70%),
-      radial-gradient(35% 25% at 70% 40%, #45A29E 0%, transparent 70%),
-      radial-gradient(30% 20% at 50% 60%, #8A2BE2 0%, transparent 70%);
-  }
-  .aurora.a2{
-    background:
-      radial-gradient(30% 20% at 20% 30%, #C850C0 0%, transparent 70%),
-      radial-gradient(40% 25% at 80% 60%, #66FCF1 0%, transparent 70%);
-    animation-duration:24s;
-    opacity:.35;
-  }
-  @keyframes aurora{
-    0%  { transform:translate3d(-5%,-3%,0) rotate(0deg)   scale(1.05); }
-    50% { transform:translate3d(4%, 2%,0)  rotate(6deg)   scale(1.15); }
-    100%{ transform:translate3d(-3%,4%,0)  rotate(-4deg)  scale(1.08); }
-  }
+/* ========= GLASS ========= */
+.glass{
+  background:linear-gradient(180deg, rgba(31,40,51,.6), rgba(11,12,16,.4));
+  border:1px solid rgba(102,252,241,.2);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-radius:24px;
+}
+.glow-ring{
+  box-shadow:
+    0 0 0 1px rgba(102,252,241,.25),
+    0 30px 80px -20px rgba(138,43,226,.35),
+    inset 0 0 60px rgba(102,252,241,.05);
+}
 
-  /* ===== Starfield ===== */
-  .stars, .stars::after{
-    content:""; position:absolute; inset:0;
-    background-image:
-      radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%),
-      radial-gradient(1px 1px at 80% 10%, #fff 50%, transparent 51%),
-      radial-gradient(1.5px 1.5px at 40% 70%, #fff 50%, transparent 51%),
-      radial-gradient(1px 1px at 65% 85%, #fff 50%, transparent 51%),
-      radial-gradient(1px 1px at 10% 80%, #fff 50%, transparent 51%),
-      radial-gradient(1.5px 1.5px at 90% 50%, #fff 50%, transparent 51%),
-      radial-gradient(1px 1px at 55% 20%, #fff 50%, transparent 51%),
-      radial-gradient(1px 1px at 30% 55%, #fff 50%, transparent 51%);
-    background-size: 600px 600px;
-    opacity:.6;
-    animation:twinkle 6s ease-in-out infinite alternate;
-  }
-  .stars::after{
-    background-size:900px 900px;
-    opacity:.35;
-    animation-duration:9s;
-  }
-  @keyframes twinkle{
-    from{ opacity:.25; } to{ opacity:.75; }
-  }
+/* ========= TITLE ========= */
+.hero{
+  text-align:center; margin:14px 0 22px;
+}
+.hero h1{
+  font-size:clamp(34px, 7vw, 64px); font-weight:900; line-height:.95;
+}
+.hero h1 .grad{
+  background:linear-gradient(90deg,#66FCF1 0%,#45A29E 40%,#C850C0 80%,#8A2BE2 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p{
+  color:rgba(232,241,242,.65); margin-top:8px; font-size:14px;
+  letter-spacing:.05em;
+}
 
-  /* ===== Noise ===== */
-  .noise{
-    position:absolute; inset:0; pointer-events:none; z-index:2;
-    opacity:.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
-  }
+/* ========= SLOT MACHINE ========= */
+.machine{
+  padding:20px; margin-bottom:18px;
+}
+.reels{
+  position:relative;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  background:linear-gradient(180deg, #06080B 0%, #0b0f17 100%);
+  border-radius:20px; padding:10px;
+  border:1px solid rgba(102,252,241,.18);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.6), inset 0 0 20px rgba(102,252,241,.05);
+  overflow:hidden;
+}
+.reel{
+  position:relative;
+  height:270px;
+  overflow:hidden;
+  border-radius:14px;
+  background:linear-gradient(180deg, rgba(102,252,241,.03), rgba(138,43,226,.05));
+  border:1px solid rgba(102,252,241,.1);
+}
+.reel::before, .reel::after{
+  content:""; position:absolute; left:0; right:0; height:40px; z-index:3; pointer-events:none;
+}
+.reel::before{top:0; background:linear-gradient(180deg, rgba(6,8,11,.9), transparent);}
+.reel::after{bottom:0; background:linear-gradient(0deg, rgba(6,8,11,.9), transparent);}
 
-  /* ===== Glass ===== */
-  .glass{
-    background:linear-gradient(180deg, rgba(31,40,51,0.55), rgba(11,12,16,0.35));
-    border:1px solid rgba(102,252,241,0.18);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border-radius:24px;
-  }
-  .glass-hover{ transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s; }
-  .glass-hover:hover{
-    transform:translateY(-6px);
-    border-color:rgba(102,252,241,0.5);
-    box-shadow:
-      0 20px 60px -20px rgba(102,252,241,0.25),
-      inset 0 0 40px rgba(102,252,241,0.05);
-  }
+.strip{
+  display:flex; flex-direction:column;
+  will-change:transform;
+}
+.symbol{
+  height:90px;
+  display:grid; place-items:center;
+  font-size:56px;
+  filter:drop-shadow(0 4px 16px rgba(102,252,241,.25));
+  user-select:none;
+}
+.symbol.small{font-size:40px}
 
-  /* ===== Neon text ===== */
-  .neon{
-    color:#E8FFFD;
-    text-shadow:
-      0 0 10px rgba(102,252,241,.45),
-      0 0 30px rgba(102,252,241,.25),
-      0 0 60px rgba(69,162,158,.15);
-  }
-  .gradient-text{
-    background:linear-gradient(90deg,#66FCF1 0%,#45A29E 40%, #C850C0 80%, #8A2BE2 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
+/* win highlight */
+.winline{
+  position:absolute; left:0; right:0;
+  height:90px; pointer-events:none; z-index:4;
+  border:2px solid var(--neon);
+  border-radius:10px;
+  box-shadow:
+    0 0 24px rgba(102,252,241,.8),
+    inset 0 0 24px rgba(102,252,241,.3);
+  animation:winPulse 1s ease-in-out infinite alternate;
+}
+@keyframes winPulse{
+  from{opacity:.6; transform:scale(1)}
+  to{opacity:1; transform:scale(1.015)}
+}
 
-  /* ===== Buttons ===== */
-  .btn-neon{
-    position:relative;
-    display:inline-flex; align-items:center; gap:.75rem;
-    padding:1.05rem 2rem;
-    border-radius:999px;
-    font-weight:600;
-    letter-spacing:.02em;
-    color:#03201E;
-    background:linear-gradient(90deg,#66FCF1,#45A29E);
-    overflow:hidden;
-    transition:transform .3s ease, box-shadow .3s ease;
-    box-shadow:
-      0 10px 40px -10px rgba(102,252,241,0.6),
-      inset 0 0 20px rgba(255,255,255,0.2);
-  }
-  .btn-neon::before{
-    content:""; position:absolute; inset:0;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-    transform:translateX(-120%);
-    transition:transform .7s ease;
-  }
-  .btn-neon:hover{ transform:translateY(-2px) scale(1.02);
-    box-shadow:0 16px 60px -10px rgba(102,252,241,0.85), inset 0 0 20px rgba(255,255,255,.3);
-  }
-  .btn-neon:hover::before{ transform:translateX(120%); }
+/* spinning animation */
+.reel.spinning .strip{
+  animation:spinReel .08s linear infinite;
+}
+@keyframes spinReel{
+  from{transform:translateY(0)}
+  to{transform:translateY(-90px)}
+}
 
-  .btn-ghost{
-    display:inline-flex; align-items:center; gap:.5rem;
-    padding:1rem 1.6rem;
-    border-radius:999px;
-    border:1px solid rgba(102,252,241,.35);
-    color:#E8FFFD;
-    transition:all .3s;
-  }
-  .btn-ghost:hover{
-    border-color:#66FCF1;
-    background:rgba(102,252,241,.08);
-    box-shadow:0 0 30px rgba(102,252,241,.25);
-  }
+/* bounce when stop */
+.reel.bounce .strip{
+  animation:bounceStop .5s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes bounceStop{
+  0%{transform:translateY(var(--land, 0))}
+  60%{transform:translateY(calc(var(--land, 0) + 14px))}
+  100%{transform:translateY(var(--land, 0))}
+}
 
-  /* ===== Reveal on scroll ===== */
-  .reveal{ opacity:0; transform:translateY(40px); transition:opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
-  .reveal.in{ opacity:1; transform:none; }
-  .reveal.delay-1{ transition-delay:.12s; }
-  .reveal.delay-2{ transition-delay:.24s; }
-  .reveal.delay-3{ transition-delay:.36s; }
-  .reveal.delay-4{ transition-delay:.48s; }
+/* ========= INFO STRIP ========= */
+.info{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; margin:14px 4px 10px;
+  font-size:13px;
+}
+.info .label{color:rgba(232,241,242,.5); letter-spacing:.2em; font-size:10px; text-transform:uppercase}
+.info .val{font-family:'Unbounded',sans-serif; font-weight:700; font-size:16px; color:#fff}
+.info .val.win{color:var(--neon); text-shadow:0 0 20px rgba(102,252,241,.6)}
+.info .val.free{color:var(--gold); text-shadow:0 0 20px rgba(255,216,107,.5)}
 
-  /* ===== Marquee ===== */
-  .marquee{ overflow:hidden; mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-  .marquee-track{
-    display:flex; gap:3rem; width:max-content;
-    animation:marquee 40s linear infinite;
-  }
-  @keyframes marquee{
-    from{ transform:translateX(0); }
-    to  { transform:translateX(-50%); }
-  }
+.msg{
+  text-align:center; min-height:36px; margin:8px 0 14px;
+  font-family:'Unbounded',sans-serif; font-weight:600;
+  font-size:16px; letter-spacing:.02em;
+  color:#fff; transition:all .3s;
+}
+.msg.win{color:var(--neon); text-shadow:0 0 30px rgba(102,252,241,.7); animation:msgPop .5s}
+.msg.jackpot{color:var(--gold); text-shadow:0 0 40px var(--gold); font-size:22px}
+.msg.lose{color:rgba(232,241,242,.45)}
+@keyframes msgPop{
+  0%{transform:scale(.8);opacity:0}
+  60%{transform:scale(1.1);opacity:1}
+  100%{transform:scale(1)}
+}
 
-  /* ===== Frost overlay ===== */
-  .frost{
-    position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0;
-    transition:opacity 1.2s ease;
-    background:
-      radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,0.35), transparent 60%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='4' seed='5'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -0.1'/></filter><rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.55'/></svg>");
-    background-blend-mode:screen;
-    mix-blend-mode:screen;
-  }
-  .frost.active{ opacity:.7; }
+/* ========= BET CONTROLS ========= */
+.bet-row{
+  display:flex; justify-content:center; align-items:center; gap:12px;
+  margin:8px 0 16px;
+}
+.bet-btn{
+  width:42px; height:42px; border-radius:12px;
+  border:1px solid rgba(102,252,241,.3);
+  background:rgba(102,252,241,.06);
+  color:#fff; font-size:20px; cursor:pointer;
+  display:grid; place-items:center;
+  transition:all .2s;
+}
+.bet-btn:hover:not(:disabled){
+  border-color:var(--neon); background:rgba(102,252,241,.15);
+  box-shadow:0 0 20px rgba(102,252,241,.3);
+}
+.bet-btn:disabled{opacity:.4; cursor:not-allowed}
+.bet-display{
+  min-width:120px; text-align:center;
+  padding:10px 14px; border-radius:12px;
+  background:rgba(11,12,16,.6);
+  border:1px solid rgba(102,252,241,.2);
+}
+.bet-display .label{font-size:10px; letter-spacing:.25em; color:rgba(232,241,242,.5)}
+.bet-display .val{font-family:'Unbounded',sans-serif; font-weight:700; font-size:18px; color:var(--gold)}
 
-  /* ===== Snowflakes ===== */
-  .flake{
-    position:fixed; top:-10vh; color:#D8FBFB;
-    pointer-events:none; z-index:61;
-    animation:fall linear forwards;
-    text-shadow:0 0 8px rgba(102,252,241,.6);
-  }
-  @keyframes fall{
-    0%{ transform:translate3d(0,-10vh,0) rotate(0deg); opacity:0; }
-    10%{ opacity:1; }
-    100%{ transform:translate3d(var(--dx),110vh,0) rotate(360deg); opacity:.2; }
-  }
+/* ========= BUTTONS ========= */
+.actions{
+  display:grid; grid-template-columns:1fr; gap:10px;
+}
+.btn{
+  width:100%; border:none; cursor:pointer;
+  font-family:'Unbounded',sans-serif; font-weight:700; letter-spacing:.05em;
+  padding:18px; border-radius:16px;
+  transition:all .25s;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-size:16px;
+}
+.btn-spin{
+  position:relative; overflow:hidden;
+  background:linear-gradient(90deg,#66FCF1,#45A29E);
+  color:#03201E;
+  box-shadow:
+    0 10px 40px -10px rgba(102,252,241,.6),
+    inset 0 0 20px rgba(255,255,255,.2);
+  font-size:20px; padding:22px;
+}
+.btn-spin::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:translateX(-120%); transition:transform .7s;
+}
+.btn-spin:hover:not(:disabled){transform:translateY(-2px) scale(1.01)}
+.btn-spin:hover:not(:disabled)::before{transform:translateX(120%)}
+.btn-spin:disabled{opacity:.5; cursor:not-allowed; filter:grayscale(.4)}
+.btn-ghost{
+  background:rgba(102,252,241,.06);
+  border:1px solid rgba(102,252,241,.25);
+  color:#E8FFFD;
+  font-size:14px; padding:14px;
+}
+.btn-ghost:hover:not(:disabled){
+  border-color:var(--neon); background:rgba(102,252,241,.12);
+}
+.btn-ghost:disabled{opacity:.4;cursor:not-allowed}
+.btn-row2{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px}
 
-  /* ===== Hero title effects ===== */
-  .title-line{ overflow:hidden; display:block; }
-  .title-line > span{
-    display:inline-block;
-    animation:riseUp 1.1s cubic-bezier(.2,.8,.2,1) both;
-  }
-  .title-line.l2 > span{ animation-delay:.15s; }
-  .title-line.l3 > span{ animation-delay:.3s; }
-  @keyframes riseUp{
-    from{ transform:translateY(110%); opacity:0; }
-    to  { transform:none; opacity:1; }
-  }
+/* ========= PAYTABLE ========= */
+.paytable{
+  padding:18px; margin-top:18px;
+}
+.paytable h3{
+  font-size:13px; letter-spacing:.25em; text-transform:uppercase;
+  color:rgba(232,241,242,.6); margin-bottom:12px; text-align:center;
+}
+.pt-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:8px;
+}
+.pt-item{
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  padding:10px 6px; border-radius:12px;
+  background:rgba(11,12,16,.5);
+  border:1px solid rgba(102,252,241,.08);
+}
+.pt-item .emoji{font-size:28px}
+.pt-item .mult{
+  font-family:'Unbounded',sans-serif; font-size:13px; font-weight:700;
+  color:var(--neon);
+}
+.pt-item .name{font-size:9px; letter-spacing:.1em; color:rgba(232,241,242,.5); text-transform:uppercase; text-align:center}
 
-  /* ===== Ticker numbers ===== */
-  .ticker{
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "tnum";
-  }
+/* ========= OVERLAYS ========= */
+.jackpot-flash{
+  position:fixed; inset:0; pointer-events:none; z-index:100; opacity:0;
+  background:radial-gradient(circle at 50% 50%, rgba(255,216,107,.6), transparent 60%);
+  transition:opacity .4s;
+}
+.jackpot-flash.on{opacity:1; animation:jpFlash 2s ease-out}
+@keyframes jpFlash{
+  0%,100%{opacity:0}
+  15%{opacity:1}
+  50%{opacity:.6}
+}
+.jp-title{
+  position:fixed; left:50%; top:40%; transform:translate(-50%,-50%) scale(.5);
+  z-index:101; pointer-events:none; opacity:0;
+  font-family:'Unbounded',sans-serif; font-weight:900;
+  font-size:clamp(40px, 10vw, 90px);
+  background:linear-gradient(90deg,#FFD86B,#66FCF1,#FFD86B);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 0 60px rgba(255,216,107,.6);
+  letter-spacing:.05em;
+}
+.jp-title.on{
+  animation:jpTitle 2.4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes jpTitle{
+  0%{transform:translate(-50%,-50%) scale(.5) rotate(-6deg); opacity:0}
+  20%{transform:translate(-50%,-50%) scale(1.1) rotate(2deg); opacity:1}
+  40%{transform:translate(-50%,-50%) scale(1) rotate(0); opacity:1}
+  80%{transform:translate(-50%,-50%) scale(1) rotate(0); opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1.2); opacity:0}
+}
 
-  /* ===== Image tiles ===== */
-  .tile{
-    position:relative; overflow:hidden; border-radius:24px; isolation:isolate;
-  }
-  .tile img{
-    width:100%; height:100%; object-fit:cover;
-    transition:transform 1.4s cubic-bezier(.2,.8,.2,1), filter .6s;
-    filter:grayscale(.2) contrast(1.05) brightness(.85);
-  }
-  .tile:hover img{ transform:scale(1.08); filter:none; }
-  .tile::after{
-    content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, transparent 40%, rgba(11,12,16,.9) 100%);
-    z-index:1;
-  }
-  .tile .cap{
-    position:absolute; inset:auto 0 0 0; padding:1.25rem 1.5rem; z-index:2;
-  }
+.flake{
+  position:fixed; top:-10vh; pointer-events:none; z-index:95;
+  animation:fall linear forwards;
+  text-shadow:0 0 8px rgba(102,252,241,.6);
+}
+@keyframes fall{
+  0%{transform:translate3d(0,-10vh,0) rotate(0); opacity:0}
+  10%{opacity:1}
+  100%{transform:translate3d(var(--dx),110vh,0) rotate(360deg); opacity:.2}
+}
+.coin{
+  position:fixed; pointer-events:none; z-index:96;
+  font-size:28px;
+  animation:coinUp 1.2s ease-out forwards;
+}
+@keyframes coinUp{
+  0%{transform:translate(0,0) scale(.6); opacity:0}
+  20%{opacity:1; transform:translate(var(--cx), -20px) scale(1)}
+  100%{transform:translate(var(--cx), -180px) scale(.4); opacity:0}
+}
 
-  /* ===== Section divider glow ===== */
-  .divider{
-    height:1px; width:100%;
-    background:linear-gradient(90deg, transparent, rgba(102,252,241,.5), transparent);
-  }
+/* ========= DOUBLE UP MODAL ========= */
+.modal{
+  position:fixed; inset:0; z-index:200;
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+  background:rgba(6,8,11,.8); backdrop-filter:blur(8px);
+}
+.modal.on{display:flex; animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{
+  max-width:420px; width:100%;
+  padding:28px 22px; text-align:center;
+}
+.modal-card h3{
+  font-size:20px; font-weight:800; margin-bottom:8px;
+}
+.modal-card p{color:rgba(232,241,242,.7); margin-bottom:18px; font-size:14px}
+.modal-bet{
+  font-family:'Unbounded',sans-serif; font-weight:700; font-size:28px;
+  color:var(--gold); margin:10px 0 18px;
+}
+.dir-row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.dir-btn{
+  padding:20px; border-radius:14px; cursor:pointer;
+  border:1px solid rgba(102,252,241,.25);
+  background:rgba(102,252,241,.05); color:#fff;
+  font-size:36px; transition:all .2s;
+}
+.dir-btn:hover{border-color:var(--neon); background:rgba(102,252,241,.15); transform:translateY(-2px)}
+.dir-btn small{display:block; font-size:11px; color:rgba(232,241,242,.6); margin-top:6px; letter-spacing:.15em}
 
-  /* ===== Badge ===== */
-  .badge{
-    display:inline-flex; align-items:center; gap:.5rem;
-    padding:.4rem .85rem; border-radius:999px;
-    border:1px solid rgba(102,252,241,.3);
-    background:rgba(102,252,241,.06);
-    font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-    color:#A8FFFB;
-  }
-  .dot{ width:6px; height:6px; border-radius:999px; background:#66FCF1; box-shadow:0 0 10px #66FCF1; }
+/* ========= BONUS MODAL ========= */
+.bonus-btn{
+  width:100%; margin-top:10px;
+  background:linear-gradient(90deg, var(--gold), #ff9d5c);
+  color:#1a1000;
+  border:none; padding:14px; border-radius:14px;
+  font-family:'Unbounded',sans-serif; font-weight:700; cursor:pointer;
+  box-shadow:0 10px 30px -10px rgba(255,216,107,.6);
+}
+.bonus-btn:hover{transform:translateY(-2px)}
 
-  /* ===== Temperature card ===== */
-  .temp-card{
-    background:
-      radial-gradient(600px 200px at 50% 0%, rgba(102,252,241,.15), transparent 60%),
-      linear-gradient(180deg, rgba(31,40,51,.7), rgba(11,12,16,.5));
-  }
+/* ========= FOOTER ========= */
+footer{
+  text-align:center; padding:20px 16px; margin-top:auto;
+  color:rgba(232,241,242,.35); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+}
+footer .pulse{
+  display:inline-block; width:6px; height:6px; border-radius:999px;
+  background:var(--neon); margin-right:6px; vertical-align:middle;
+  box-shadow:0 0 10px var(--neon);
+  animation:pulseDot 1.5s infinite;
+}
+@keyframes pulseDot{50%{opacity:.4}}
 
-  /* Parallax floats */
-  .float-slow{ animation:float 10s ease-in-out infinite alternate; }
-  .float-med{ animation:float 7s ease-in-out infinite alternate; }
-  @keyframes float{
-    from{ transform:translateY(-8px); }
-    to  { transform:translateY(8px); }
-  }
-
-  /* Nav underline */
-  .nav-link{ position:relative; }
-  .nav-link::after{
-    content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px;
-    background:#66FCF1; transition:width .4s;
-  }
-  .nav-link:hover::after{ width:100%; }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar{ width:10px; }
-  ::-webkit-scrollbar-track{ background:#0B0C10; }
-  ::-webkit-scrollbar-thumb{ background:linear-gradient(#45A29E,#8A2BE2); border-radius:10px; }
-
-  /* Utility */
-  .glow-ring{
-    box-shadow:
-      0 0 0 1px rgba(102,252,241,.25),
-      0 30px 80px -20px rgba(138,43,226,.35),
-      inset 0 0 60px rgba(102,252,241,.05);
-  }
-
-  @media (max-width: 768px){
-    .hero-title{ font-size:clamp(2.6rem, 12vw, 4.8rem) !important; }
-  }
+/* ========= RESPONSIVE ========= */
+@media (max-width: 520px){
+  .reel{height:228px}
+  .symbol{height:76px; font-size:44px}
+  .pt-grid{grid-template-columns:repeat(4,1fr); gap:6px}
+  .pt-item .emoji{font-size:22px}
+  .pt-item .mult{font-size:11px}
+  .pt-item .name{font-size:8px}
+  .btn-spin{font-size:18px; padding:20px}
+  @keyframes spinReel{from{transform:translateY(0)} to{transform:translateY(-76px)}}
+}
 </style>
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="frost" id="frost"></div>
+<!-- Background layers -->
+<div class="bg">
+  <div class="stars"></div>
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+</div>
 
-<!-- ========== NAV ========== -->
-<header class="fixed top-0 left-0 right-0 z-50">
-  <div class="mx-auto max-w-7xl px-6 mt-4">
-    <nav class="glass flex items-center justify-between px-5 py-3">
-      <a href="#top" class="flex items-center gap-3">
-        <span class="relative inline-flex w-9 h-9 items-center justify-center rounded-full" style="background:radial-gradient(circle at 30% 30%, #66FCF1, #8A2BE2 80%);">
-          <span class="absolute inset-0 rounded-full" style="box-shadow:0 0 20px #66FCF1;"></span>
-          <span class="relative text-[#0B0C10] font-black">Я</span>
-        </span>
-        <div class="leading-tight">
-          <div class="text-sm tracking-[0.25em] text-white/70">ЯР‑САЛЕ</div>
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">YAMAL · 66°N</div>
-        </div>
-      </a>
-      <div class="hidden md:flex items-center gap-8 text-sm text-white/80">
-        <a class="nav-link" href="#magic">Магия Ямала</a>
-        <a class="nav-link" href="#oasis">Оазис в мерзлоте</a>
-        <a class="nav-link" href="#viral">70°C интерактив</a>
-        <a class="nav-link" href="#visit">Визит</a>
+<!-- Overlay effects -->
+<div class="jackpot-flash" id="jpFlash"></div>
+<div class="jp-title" id="jpTitle">ДЖЕКПОТ</div>
+
+<!-- App -->
+<div class="app">
+
+  <header class="topbar">
+    <div class="logo">
+      <div class="logo-mark">Я</div>
+      <div class="logo-title">
+        <b>YAMAL SLOTS</b>
+        <small>66°N · ARCTIC CASINO</small>
       </div>
-      <a href="#visit" class="btn-ghost text-sm hidden sm:inline-flex">Запланировать поездку →</a>
-    </nav>
-  </div>
-</header>
+    </div>
+    <div class="balance">
+      <span class="coin">💎</span>
+      <span class="amount" id="balance">1000</span>
+    </div>
+  </header>
 
-<!-- ========== HERO ========== -->
-<section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden">
-  <div class="aurora-wrap">
-    <div class="stars"></div>
-    <div class="aurora a1"></div>
-    <div class="aurora a2"></div>
-    <div class="noise"></div>
+  <div class="hero">
+    <h1>Крутись, <span class="grad">тундра.</span></h1>
+    <p>Удача любит холодных</p>
   </div>
 
-  <div class="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-20 w-full">
-    <div class="flex flex-col gap-8">
-      <div class="reveal flex flex-wrap items-center gap-3">
-        <span class="badge"><span class="dot"></span> 66°50′ с. ш. · Ямало‑Ненецкий АО</span>
-        <span class="badge">−52°C зимой · +30°C летом</span>
-        <span class="badge">Полярный день · 60 суток без заката</span>
-      </div>
+  <!-- SLOT MACHINE -->
+  <section class="machine glass glow-ring">
 
-      <h1 class="hero-title display font-black leading-[0.95]" style="font-size:clamp(3rem,8vw,7.5rem)">
-        <span class="title-line l1"><span>Яр‑Сале.</span></span>
-        <span class="title-line l2"><span class="gradient-text">Пульс ледяной</span></span>
-        <span class="title-line l3"><span class="neon">пустыни.</span></span>
-      </h1>
-
-      <p class="reveal delay-1 max-w-2xl text-lg md:text-xl text-white/75">
-        Здесь вечная мерзлота хранит след мамонтов, а над крышами горит северное сияние.
-        700 000 оленей, бескрайняя тундра, ненцы в малицах и 5G — всё на одном меридиане.
-        Это не край света. Это его <span class="text-[#66FCF1]">начало</span>.
-      </p>
-
-      <div class="reveal delay-2 flex flex-wrap items-center gap-4">
-        <a href="#magic" class="btn-neon">
-          Прикоснуться к Северу
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#viral" class="btn-ghost">
-          <span class="w-2 h-2 rounded-full bg-[#66FCF1] animate-pulse"></span>
-          Ощутить мороз в −50°C
-        </a>
-      </div>
-
-      <!-- Big stats -->
-      <div class="reveal delay-3 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-        <div class="glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">ПЛОЩАДЬ РАЙОНА</div>
-          <div class="mt-2 display text-3xl md:text-4xl gradient-text">148 000 км²</div>
-          <div class="text-xs text-white/50 mt-1">больше Греции</div>
-        </div>
-        <div class="glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">ОЛЕНЕЙ</div>
-          <div class="mt-2 display text-3xl md:text-4xl gradient-text ticker" data-counter="700000" data-suffix="">0</div>
-          <div class="text-xs text-white/50 mt-1">крупнейшее стадо планеты</div>
-        </div>
-        <div class="glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">ЖИТЕЛЕЙ ЯР‑САЛЕ</div>
-          <div class="mt-2 display text-3xl md:text-4xl gradient-text ticker" data-counter="7000" data-suffix="+">0</div>
-          <div class="text-xs text-white/50 mt-1">один на 21 км² тундры</div>
-        </div>
-        <div class="glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">ОСНОВАН</div>
-          <div class="mt-2 display text-3xl md:text-4xl gradient-text">1927</div>
-          <div class="text-xs text-white/50 mt-1">почти век на мерзлоте</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll hint -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/50 text-xs tracking-[0.3em] flex flex-col items-center gap-3">
-    <span>СКРОЛЛ · ВГЛУБЬ СЕВЕРА</span>
-    <span class="block w-[1px] h-10 bg-gradient-to-b from-[#66FCF1] to-transparent"></span>
-  </div>
-</section>
-
-<!-- ========== MARQUEE ========== -->
-<section class="py-10 border-y border-white/5 bg-[#06080B]/80 relative z-10">
-  <div class="marquee">
-    <div class="marquee-track display text-4xl md:text-6xl text-white/10 whitespace-nowrap">
-      <span>· ТУНДРА ·</span>
-      <span style="color:rgba(102,252,241,.25)">· СЕВЕРНОЕ СИЯНИЕ ·</span>
-      <span>· НЕНЦЫ ·</span>
-      <span style="color:rgba(200,80,192,.25)">· ОЛЕНИ ·</span>
-      <span>· ОБСКАЯ ГУБА ·</span>
-      <span style="color:rgba(102,252,241,.25)">· ПОЛЯРНЫЙ ДЕНЬ ·</span>
-      <span>· МАЛИЦА ·</span>
-      <span style="color:rgba(138,43,226,.35)">· ЯМАЛ ·</span>
-      <!-- duplicate -->
-      <span>· ТУНДРА ·</span>
-      <span style="color:rgba(102,252,241,.25)">· СЕВЕРНОЕ СИЯНИЕ ·</span>
-      <span>· НЕНЦЫ ·</span>
-      <span style="color:rgba(200,80,192,.25)">· ОЛЕНИ ·</span>
-      <span>· ОБСКАЯ ГУБА ·</span>
-      <span style="color:rgba(102,252,241,.25)">· ПОЛЯРНЫЙ ДЕНЬ ·</span>
-      <span>· МАЛИЦА ·</span>
-      <span style="color:rgba(138,43,226,.35)">· ЯМАЛ ·</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== MAGIC OF YAMAL ========== -->
-<section id="magic" class="relative py-28 md:py-40 overflow-hidden">
-  <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full blur-3xl opacity-40"
-       style="background:radial-gradient(circle, #8A2BE2 0%, transparent 60%);"></div>
-
-  <div class="mx-auto max-w-7xl px-6 relative">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-      <div class="reveal max-w-2xl">
-        <span class="badge mb-4"><span class="dot"></span> 01 — Магия Ямала</span>
-        <h2 class="display text-5xl md:text-7xl font-black leading-[0.95]">
-          Планета, которая <span class="gradient-text">ещё не кончилась.</span>
-        </h2>
-      </div>
-      <p class="reveal delay-1 text-white/65 max-w-md">
-        Ямал — «край земли» по‑ненецки. Но стоит ступить сюда — и понимаешь:
-        край — это не конец. Это точка, где начинается всё настоящее.
-      </p>
+    <div class="reels" id="reels">
+      <div class="reel" id="reel0"><div class="strip"></div></div>
+      <div class="reel" id="reel1"><div class="strip"></div></div>
+      <div class="reel" id="reel2"><div class="strip"></div></div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- Card 1 -->
-      <article class="reveal glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
-        <div class="text-5xl display gradient-text">700K</div>
-        <h3 class="display text-2xl font-bold">Оленья цивилизация</h3>
-        <p class="text-white/70 text-sm leading-relaxed">
-          Крупнейшее в мире домашнее стадо северных оленей. Каждую весну тысячи ненцев
-          кочуют с ними на север — это живой, дышащий Ямал, который не меняется веками.
-        </p>
-        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">РЕКОРД ПЛАНЕТЫ →</div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="reveal delay-1 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
-        <div class="text-5xl display gradient-text">−52°C</div>
-        <h3 class="display text-2xl font-bold">Климат, который уважают</h3>
-        <p class="text-white/70 text-sm leading-relaxed">
-          Зимой мороз прожигает до костей, летом комары встают стеной. Природа здесь не
-          декоративна — она главный автор сценария. И каждый, кто выжил, получает её автограф.
-        </p>
-        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">ПОЛЯРНЫЙ ХАРАКТЕР →</div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="reveal delay-2 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
-        <div class="text-5xl display gradient-text">∞</div>
-        <h3 class="display text-2xl font-bold">Тундра без горизонта</h3>
-        <p class="text-white/70 text-sm leading-relaxed">
-          148 000 км² мхов, лишайников и белого безмолвия. Здесь GPS теряется в красоте,
-          а глаз — в масштабе. Ямал — последний в Европе уголок, где природа побеждает карту.
-        </p>
-        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">БЕСКОНЕЧНОСТЬ →</div>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="reveal delay-3 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
-        <div class="text-5xl display gradient-text">XXI</div>
-        <h3 class="display text-2xl font-bold">Традиция × будущее</h3>
-        <p class="text-white/70 text-sm leading-relaxed">
-          Шаман с бубном и инженер с дроном пьют чай в одном чуме. Ненецкий язык,
-          олений промысел и 5G‑связь — Ямал не выбирает между эпохами. Он склеивает их.
-        </p>
-        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">ДВЕ ЭПОХИ →</div>
-      </article>
-    </div>
-
-    <!-- Images row -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-      <div class="reveal tile aspect-[4/5] glow-ring">
-        <img src="https://source.unsplash.com/600x800/?arctic,tundra" alt="Тундра Ямала"/>
-        <div class="cap">
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ТУНДРА</div>
-          <div class="display text-lg">Белое безмолвие</div>
-        </div>
-      </div>
-      <div class="reveal delay-1 tile aspect-[4/5] glow-ring">
-        <img src="https://source.unsplash.com/600x800/?reindeer,snow" alt="Северный олень"/>
-        <div class="cap">
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ОЛЕНИ</div>
-          <div class="display text-lg">Живое золото Севера</div>
-        </div>
-      </div>
-      <div class="reveal delay-2 tile aspect-[4/5] glow-ring">
-        <img src="https://source.unsplash.com/600x800/?aurora,borealis" alt="Северное сияние"/>
-        <div class="cap">
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">СИЯНИЕ</div>
-          <div class="display text-lg">Небо, которое танцует</div>
-        </div>
-      </div>
-      <div class="reveal delay-3 tile aspect-[4/5] glow-ring">
-        <img src="https://source.unsplash.com/600x800/?nenets,arctic,people" alt="Ненцы"/>
-        <div class="cap">
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">НЕНЦЫ</div>
-          <div class="display text-lg">Люди, что старше карты</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ========== YAR-SALE: OASIS ========== -->
-<section id="oasis" class="relative py-28 md:py-40 overflow-hidden">
-  <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-40"
-       style="background:radial-gradient(circle, #45A29E 0%, transparent 60%);"></div>
-
-  <div class="mx-auto max-w-7xl px-6 relative grid md:grid-cols-12 gap-10 items-center">
-    <div class="md:col-span-6 reveal">
-      <div class="tile aspect-[4/5] glow-ring">
-        <img src="https://source.unsplash.com/900x1200/?arctic,village,snow" alt="Яр-Сале зимой"/>
-        <div class="cap">
-          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ЯР‑САЛЕ · ЗИМА</div>
-          <div class="display text-xl">Огни в −45°C</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="md:col-span-6">
-      <span class="badge mb-6 reveal"><span class="dot"></span> 02 — Яр‑Сале</span>
-      <h2 class="reveal display text-5xl md:text-7xl font-black leading-[0.95] mb-6">
-        Оазис <span class="gradient-text">в вечной мерзлоте.</span>
-      </h2>
-      <p class="reveal delay-1 text-white/75 text-lg leading-relaxed mb-6">
-        Яр‑Сале — «песчаный мыс» на языке ненцев. Но сегодня это не просто поселок
-        у Обской губы, а столица Ямальского района и его сердце, бьющееся в ритме −45°.
-      </p>
-      <p class="reveal delay-2 text-white/65 leading-relaxed mb-10">
-        Здесь дома стоят на сваях, чтобы не растопить вековой лёд. Кофейни наливают флэт‑уайт,
-        пока за окном уходит на север упряжка. Школа с интерактивными досками соседствует с
-        чумом — и это не противоречие, а формула местной жизни. Тёплый свет в окнах среди
-        белого океана — лучший символ того, что человек может не просто выжить в Арктике,
-        а жить в ней красиво.
-      </p>
-
-      <div class="grid grid-cols-2 gap-4 mb-10">
-        <div class="reveal glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">АЭРОПОРТ</div>
-          <div class="display text-2xl mt-1">Салехард · 120 км</div>
-          <div class="text-xs text-white/50 mt-1">зимник + вертолёт</div>
-        </div>
-        <div class="reveal delay-1 glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">ИНТЕРНЕТ</div>
-          <div class="display text-2xl mt-1">4G / Starlink</div>
-          <div class="text-xs text-white/50 mt-1">TikTok из чума — да</div>
-        </div>
-        <div class="reveal delay-2 glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">СЕЗОН</div>
-          <div class="display text-2xl mt-1">10 мес. зимы</div>
-          <div class="text-xs text-white/50 mt-1">и 2 — ожидания зимы</div>
-        </div>
-        <div class="reveal delay-3 glass p-5">
-          <div class="text-[11px] tracking-[0.25em] text-white/50">КУХНЯ</div>
-          <div class="display text-2xl mt-1">Строганина</div>
-          <div class="text-xs text-white/50 mt-1">муксун, нельма, оленина</div>
-        </div>
-      </div>
-
-      <a href="#visit" class="btn-neon reveal">
-        Спланировать маршрут
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ========== VIRAL / INTERACTIVE ========== -->
-<section id="viral" class="relative py-28 md:py-40 overflow-hidden">
-  <div class="absolute inset-0 opacity-30 pointer-events-none"
-       style="background:radial-gradient(700px 400px at 50% 50%, rgba(102,252,241,.25), transparent 60%);"></div>
-
-  <div class="mx-auto max-w-6xl px-6 relative">
-    <div class="text-center mb-16">
-      <span class="badge reveal"><span class="dot"></span> 03 — Интерактив</span>
-      <h2 class="reveal delay-1 display text-5xl md:text-7xl font-black leading-[0.95] mt-4">
-        Нажми — и <span class="gradient-text">станет холодно.</span>
-      </h2>
-      <p class="reveal delay-2 text-white/65 max-w-2xl mx-auto mt-4">
-        Самый честный тест: сможешь ли ты вынести ямальский мороз хотя бы 10 секунд?
-        Спойлер — экран покроется инеем. У нас так каждое утро.
-      </p>
-    </div>
-
-    <div class="reveal glass temp-card p-8 md:p-14 flex flex-col items-center text-center glow-ring">
-      <div class="text-[11px] tracking-[0.4em] text-[#66FCF1]">ТЕМПЕРАТУРА ЗА ОКНОМ, ЯР‑САЛЕ</div>
-
-      <div id="tempValue" class="display text-7xl md:text-9xl font-black leading-none mt-6 ticker">
-        +22°
-      </div>
-
-      <div id="tempLabel" class="text-white/60 mt-4">Сейчас ты в комнате. Нажимай — и почувствуй Север.</div>
-
-      <button id="tempBtn" class="btn-neon mt-8">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Узнать температуру
-      </button>
-
-      <div class="grid grid-cols-3 gap-4 md:gap-10 mt-12 w-full max-w-3xl">
-        <div>
-          <div class="display text-2xl md:text-4xl gradient-text">−52°</div>
-          <div class="text-xs text-white/50 mt-1">рекорд зимы</div>
-        </div>
-        <div>
-          <div class="display text-2xl md:text-4xl gradient-text">60</div>
-          <div class="text-xs text-white/50 mt-1">суток полярного дня</div>
-        </div>
-        <div>
-          <div class="display text-2xl md:text-4xl gradient-text">40</div>
-          <div class="text-xs text-white/50 mt-1">суток полярной ночи</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Share -->
-    <div class="reveal flex flex-wrap justify-center gap-3 mt-10">
-      <button class="btn-ghost share-btn" data-share="tg">
-        <span>Telegram</span>
-      </button>
-      <button class="btn-ghost share-btn" data-share="vk">
-        <span>ВКонтакте</span>
-      </button>
-      <button class="btn-ghost share-btn" data-share="copy">
-        <span id="copyLabel">Скопировать ссылку</span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ========== VISIT / CTA ========== -->
-<section id="visit" class="relative py-28 md:py-40 overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="aurora a1 opacity-40"></div>
-  </div>
-
-  <div class="mx-auto max-w-6xl px-6 relative">
-    <div class="reveal glass p-10 md:p-16 text-center glow-ring">
-      <span class="badge"><span class="dot"></span> 04 — Приезжай</span>
-      <h2 class="display text-5xl md:text-7xl font-black leading-[0.95] mt-4">
-        Север — это не <span class="gradient-text">далеко.</span><br/>
-        Это — <span class="neon">вовремя.</span>
-      </h2>
-      <p class="text-white/70 mt-6 max-w-2xl mx-auto">
-        Туристы возвращаются отсюда другими. Инвесторы находят территорию, где будущее
-        ещё можно построить с нуля. Медиа — кадр, который не повторит ни один нейросетевой
-        генератор. Ямал ждёт. И он терпеливый.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4 mt-10">
-        <a href="#top" class="btn-neon">
-          Купить билет на Ямал
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="mailto:hello@yar-sale.ru" class="btn-ghost">Связаться с администрацией</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="relative pt-16 pb-10 border-t border-white/5 overflow-hidden">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="grid md:grid-cols-4 gap-10">
+    <div class="info">
       <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="relative inline-flex w-9 h-9 items-center justify-center rounded-full" style="background:radial-gradient(circle at 30% 30%, #66FCF1, #8A2BE2 80%);">
-            <span class="relative text-[#0B0C10] font-black">Я</span>
-          </span>
-          <div class="leading-tight">
-            <div class="text-sm tracking-[0.25em] text-white/70">ЯР‑САЛЕ</div>
-            <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">YAMAL · 66°N</div>
-          </div>
-        </div>
-        <p class="text-white/55 text-sm leading-relaxed">
-          Официальный цифровой голос Ямальского района. Где тундра встречает Wi‑Fi,
-          а традиция — будущее.
-        </p>
+        <div class="label">Выигрыш</div>
+        <div class="val win" id="lastWin">0</div>
       </div>
-      <div>
-        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">НАВИГАЦИЯ</div>
-        <ul class="space-y-2 text-white/75 text-sm">
-          <li><a class="nav-link" href="#magic">Магия Ямала</a></li>
-          <li><a class="nav-link" href="#oasis">Яр‑Сале</a></li>
-          <li><a class="nav-link" href="#viral">Мороз‑тест</a></li>
-          <li><a class="nav-link" href="#visit">Визит</a></li>
-        </ul>
+      <div style="text-align:center">
+        <div class="label">Фриспины</div>
+        <div class="val free" id="freeSpins">0</div>
       </div>
-      <div>
-        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">СОЦСЕТИ</div>
-        <ul class="space-y-2 text-white/75 text-sm">
-          <li><a class="nav-link" href="#">Telegram · @yarsale</a></li>
-          <li><a class="nav-link" href="#">ВКонтакте · /yarsale</a></li>
-          <li><a class="nav-link" href="#">YouTube · Ямал 4K</a></li>
-          <li><a class="nav-link" href="#">TikTok · #ямал</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">ПОДЕЛИСЬ СЕВЕРОМ</div>
-        <p class="text-white/65 text-sm mb-4">Отправь другу ссылку — пусть согреется мыслью о полярной ночи.</p>
-        <button class="btn-neon share-btn" data-share="copy">
-          <span id="copyLabel2">Скопировать ссылку</span>
-        </button>
+      <div style="text-align:right">
+        <div class="label">Всего выиграно</div>
+        <div class="val" id="totalWin">0</div>
       </div>
     </div>
 
-    <div class="mt-14 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
-      <div>© 2026 Яр‑Сале · Ямальский район. Все северные права защищены.</div>
-      <div class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#66FCF1] animate-pulse"></span>
-        Сделано с теплом на Крайнем Севере
+    <div class="msg" id="msg">Сделай ставку и крути барабаны</div>
+
+    <div class="bet-row">
+      <button class="bet-btn" id="betMinus">−</button>
+      <div class="bet-display">
+        <div class="label">СТАВКА</div>
+        <div class="val"><span id="betVal">50</span></div>
+      </div>
+      <button class="bet-btn" id="betPlus">+</button>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-spin" id="spinBtn">
+        <span>КРУТИТЬ</span>
+        <span style="font-size:22px">🎰</span>
+      </button>
+      <div class="btn-row2">
+        <button class="btn btn-ghost" id="maxBtn">МАКС. СТАВКА</button>
+        <button class="btn btn-ghost" id="autoBtn">АВТО ×10</button>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- PAYTABLE -->
+  <section class="paytable glass">
+    <h3>Таблица выплат · 3 в ряд</h3>
+    <div class="pt-grid" id="paytable"></div>
+    <div style="margin-top:14px; font-size:11px; color:rgba(232,241,242,.45); text-align:center; letter-spacing:.1em; line-height:1.6">
+      ⭐ WILD заменяет любой символ · 3× WILD на центральной линии = ДЖЕКПОТ ×100<br/>
+      3× 🏕️ ЧУМ = 5 фриспинов · Линий: 3 горизонтали + 2 диагонали
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span class="pulse"></span>
+  Сделано с холодом в сердце и теплом в чуме · Ямальский район
 </footer>
 
+<!-- DOUBLE UP MODAL -->
+<div class="modal" id="dblModal">
+  <div class="modal-card glass glow-ring">
+    <h3>Удвоить или забрать?</h3>
+    <p>Угадай, куда побежит северный олень</p>
+    <div class="modal-bet" id="dblAmount">+0</div>
+    <div class="dir-row">
+      <button class="dir-btn" data-dir="left">
+        🦌⬅️
+        <small>ВЛЕВО</small>
+      </button>
+      <button class="dir-btn" data-dir="right">
+        ➡️🦌
+        <small>ВПРАВО</small>
+      </button>
+    </div>
+    <button class="btn btn-ghost" id="dblTake" style="margin-top:12px">Забрать выигрыш</button>
+  </div>
+</div>
+
 <script>
-/* ======= Cursor glow ======= */
-const glow = document.getElementById('cursorGlow');
-if (window.matchMedia('(pointer:fine)').matches) {
-  window.addEventListener('pointermove', e => {
-    glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
-  });
-} else { glow.style.display = 'none'; }
-
-/* ======= Reveal on scroll ======= */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(en => {
-    if (en.isIntersecting){
-      en.target.classList.add('in');
-      io.unobserve(en.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* ======= Animated counters ======= */
-function animateCounter(el){
-  const target = +el.dataset.counter;
-  const suffix = el.dataset.suffix || '';
-  const dur = 2200;
-  const start = performance.now();
-  function frame(t){
-    const p = Math.min(1, (t - start) / dur);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const val = Math.floor(target * eased);
-    el.textContent = val.toLocaleString('ru-RU') + suffix;
-    if (p < 1) requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-}
-const counterIO = new IntersectionObserver(entries => {
-  entries.forEach(en => {
-    if (en.isIntersecting){
-      animateCounter(en.target);
-      counterIO.unobserve(en.target);
-    }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('[data-counter]').forEach(el => counterIO.observe(el));
-
-/* ======= Parallax aurora on scroll ======= */
-const auroraLayers = document.querySelectorAll('.aurora');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  auroraLayers.forEach((l, i) => {
-    l.style.transform = `translate3d(0, ${y * (0.05 + i*0.03)}px, 0)`;
-  });
-}, { passive:true });
-
-/* ======= Temperature / Frost interaction ======= */
-const frost = document.getElementById('frost');
-const tempBtn = document.getElementById('tempBtn');
-const tempValue = document.getElementById('tempValue');
-const tempLabel = document.getElementById('tempLabel');
-
-const tempStages = [
-  { v: '+22°', l: 'Сейчас ты в комнате. Нажимай — и почувствуй Север.' },
-  { v: '+2°',  l: 'Ты вышел на крыльцо. Куртку бы.' },
-  { v: '−18°', l: 'Декабрь в Яр‑Сале. Ресницы звенят.' },
-  { v: '−34°', l: 'Январь. Дыхание превращается в кристаллы на лету.' },
-  { v: '−52°', l: 'Абсолютный рекорд. Добро пожаловать в настоящий Ямал.' }
+/* ========== GAME DATA ========== */
+const SYMBOLS = [
+  { id:'deer',    emoji:'🦌', name:'Олень',   weight:32, mult:2  },
+  { id:'fish',    emoji:'🐟', name:'Муксун',  weight:25, mult:3  },
+  { id:'snow',    emoji:'❄️', name:'Снег',    weight:20, mult:4  },
+  { id:'chum',    emoji:'🏕️', name:'Чум',     weight:11, mult:5  },
+  { id:'owl',     emoji:'🦉', name:'Сова',    weight:7,  mult:8  },
+  { id:'aurora',  emoji:'🌌', name:'Сияние',  weight:3,  mult:12 },
+  { id:'mammoth', emoji:'🦣', name:'Мамонт',  weight:1.5,mult:25 },
+  { id:'wild',    emoji:'⭐', name:'WILD',    weight:0.5,mult:50 },
 ];
-let tempIdx = 0;
+const TOTAL_WEIGHT = SYMBOLS.reduce((s,x)=>s+x.weight,0);
 
+const BETS = [10, 25, 50, 100, 250, 500];
+const SYMBOL_H = () => (window.matchMedia('(max-width:520px)').matches ? 76 : 90);
+const ROWS = 3;
+
+/* ========== STATE ========== */
+const state = {
+  balance: 1000,
+  totalWin: 0,
+  bet: 50,
+  betIdx: 2,
+  spinning: false,
+  freeSpins: 0,
+  autoSpins: 0,
+  lastWin: 0,
+  grid: [[0,0,0],[0,0,0],[0,0,0]], // reel, row -> symbol index
+};
+
+function save(){
+  try{
+    localStorage.setItem('yamal-slots', JSON.stringify({
+      balance:state.balance, totalWin:state.totalWin, betIdx:state.betIdx
+    }));
+  }catch(e){}
+}
+function load(){
+  try{
+    const d = JSON.parse(localStorage.getItem('yamal-slots')||'null');
+    if(d){
+      state.balance = d.balance ?? 1000;
+      state.totalWin = d.totalWin ?? 0;
+      state.betIdx = d.betIdx ?? 2;
+      state.bet = BETS[state.betIdx];
+    }
+  }catch(e){}
+}
+load();
+
+/* ========== HELPERS ========== */
+function pickSymbol(){
+  let r = Math.random() * TOTAL_WEIGHT;
+  for(let i=0;i<SYMBOLS.length;i++){
+    r -= SYMBOLS[i].weight;
+    if(r<=0) return i;
+  }
+  return 0;
+}
+function fmt(n){ return n.toLocaleString('ru-RU'); }
+
+/* ========== UI ========== */
+const $ = sel => document.querySelector(sel);
+const balanceEl = $('#balance');
+const lastWinEl = $('#lastWin');
+const totalWinEl = $('#totalWin');
+const freeSpinsEl = $('#freeSpins');
+const betValEl = $('#betVal');
+const msgEl = $('#msg');
+const spinBtn = $('#spinBtn');
+const betMinus = $('#betMinus');
+const betPlus = $('#betPlus');
+const maxBtn = $('#maxBtn');
+const autoBtn = $('#autoBtn');
+
+function updateUI(){
+  balanceEl.textContent = fmt(state.balance);
+  lastWinEl.textContent = fmt(state.lastWin);
+  totalWinEl.textContent = fmt(state.totalWin);
+  freeSpinsEl.textContent = state.freeSpins;
+  betValEl.textContent = fmt(state.bet);
+
+  const canAffordSpin = state.balance >= state.bet || state.freeSpins > 0;
+  spinBtn.disabled = state.spinning || !canAffordSpin;
+  betMinus.disabled = state.spinning || state.betIdx === 0;
+  betPlus.disabled = state.spinning || state.betIdx === BETS.length-1;
+  maxBtn.disabled = state.spinning;
+  autoBtn.disabled = state.spinning || !canAffordSpin;
+
+  if(state.balance < BETS[0] && state.freeSpins === 0 && !state.spinning){
+    showNoMoneyMsg();
+  }
+}
+
+function showNoMoneyMsg(){
+  msgEl.classList.add('lose');
+  msgEl.classList.remove('win','jackpot');
+  msgEl.innerHTML = 'Тундра забрала всё. <button class="bonus-btn" id="bonusBtn">🎁 Получить 500 монет</button>';
+  const bb = document.getElementById('bonusBtn');
+  if(bb) bb.onclick = () => {
+    state.balance += 500;
+    msgEl.textContent = 'Север щедрый. +500 монет';
+    msgEl.classList.remove('lose'); msgEl.classList.add('win');
+    save(); updateUI();
+  };
+}
+
+/* ========== REEL RENDER ========== */
+// strip content: lots of random symbols + final 3 visible at bottom
+function buildStrip(reelIdx, finalSymbols /* [top,mid,bot] indexes */){
+  const strip = document.querySelectorAll('.strip')[reelIdx];
+  const FILLER = 25; // symbols that spin before landing
+  let html = '';
+  for(let i=0;i<FILLER;i++){
+    const s = SYMBOLS[pickSymbol()];
+    html += `<div class="symbol">${s.emoji}</div>`;
+  }
+  // final 3 symbols visible
+  finalSymbols.forEach(idx => {
+    html += `<div class="symbol">${SYMBOLS[idx].emoji}</div>`;
+  });
+  strip.innerHTML = html;
+  // reset transform
+  strip.style.transform = 'translateY(0)';
+}
+
+// initial display: show 3 random symbols per reel
+function initReels(){
+  for(let r=0;r<3;r++){
+    const syms = [pickSymbol(),pickSymbol(),pickSymbol()];
+    state.grid[r] = syms;
+    const strip = document.querySelectorAll('.strip')[r];
+    strip.innerHTML = syms.map(i=>`<div class="symbol">${SYMBOLS[i].emoji}</div>`).join('');
+    strip.style.transform = 'translateY(0)';
+  }
+}
+
+/* ========== SPIN LOGIC ========== */
+async function spin(){
+  if(state.spinning) return;
+
+  // pay
+  if(state.freeSpins > 0){
+    state.freeSpins--;
+  } else {
+    if(state.balance < state.bet){ updateUI(); return; }
+    state.balance -= state.bet;
+  }
+
+  state.spinning = true;
+  state.lastWin = 0;
+  msgEl.className = 'msg';
+  msgEl.textContent = 'Барабаны кружат как метель…';
+  updateUI();
+
+  // pre-determine outcome
+  const finals = [];
+  for(let r=0;r<3;r++){
+    finals.push([pickSymbol(),pickSymbol(),pickSymbol()]);
+  }
+  state.grid = finals;
+
+  // build strips
+  for(let r=0;r<3;r++){
+    buildStrip(r, finals[r]);
+  }
+
+  // remove old winlines
+  document.querySelectorAll('.winline').forEach(n=>n.remove());
+
+  // spin reels sequentially
+  const reels = document.querySelectorAll('.reel');
+  const SH = SYMBOL_H();
+
+  // start all spinning
+  reels.forEach(r => r.classList.add('spinning'));
+
+  // stop reels one by one
+  for(let r=0;r<3;r++){
+    await wait(700 + r*350);
+    const reel = reels[r];
+    const strip = reel.querySelector('.strip');
+
+    reel.classList.remove('spinning');
+
+    // final offset: total strip height minus 3 rows = pull strip up
+    const totalSymbols = strip.children.length;
+    const finalY = -(totalSymbols - 3) * SH;
+    strip.style.setProperty('--land', finalY + 'px');
+    strip.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1)';
+    strip.style.transform = `translateY(${finalY}px)`;
+
+    // tiny bounce
+    await wait(450);
+    strip.style.transition = '';
+    reel.classList.add('bounce');
+    setTimeout(()=>reel.classList.remove('bounce'), 500);
+  }
+
+  await wait(300);
+
+  // evaluate
+  evaluate();
+  state.spinning = false;
+
+  // auto spin
+  if(state.autoSpins > 0){
+    state.autoSpins--;
+    save();
+    updateUI();
+    if(state.balance >= state.bet || state.freeSpins > 0){
+      setTimeout(spin, 900);
+    } else {
+      state.autoSpins = 0;
+      updateUI();
+    }
+    return;
+  }
+
+  // free spin auto
+  if(state.freeSpins > 0){
+    setTimeout(spin, 1200);
+    updateUI();
+    return;
+  }
+
+  save();
+  updateUI();
+}
+
+function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+/* ========== WIN EVAL ========== */
+// Grid: state.grid[reel][row] — but for lines we want grid[row][reel]
+function getBoard(){
+  const b = [[0,0,0],[0,0,0],[0,0,0]]; // row, reel
+  for(let r=0;r<3;r++)for(let row=0;row<3;row++) b[row][r] = state.grid[r][row];
+  return b;
+}
+
+function checkLine(cells){
+  // cells: array of symbol indexes across the line
+  // wild id index
+  const wildId = SYMBOLS.findIndex(s=>s.id==='wild');
+  // find first non-wild to determine match symbol
+  const first = cells.find(c => c !== wildId);
+  const matchId = first ?? wildId;
+  const ok = cells.every(c => c === matchId || c === wildId);
+  return ok ? matchId : -1;
+}
+
+function evaluate(){
+  const board = getBoard();
+  // 5 lines: 3 horizontals + 2 diagonals
+  const lines = [
+    { cells:[board[0][0],board[0][1],board[0][2]], type:'row', row:0 },
+    { cells:[board[1][0],board[1][1],board[1][2]], type:'row', row:1 },
+    { cells:[board[2][0],board[2][1],board[2][2]], type:'row', row:2 },
+    { cells:[board[0][0],board[1][1],board[2][2]], type:'diag', dir:'\\' },
+    { cells:[board[2][0],board[1][1],board[0][2]], type:'diag', dir:'/' },
+  ];
+
+  let totalWin = 0;
+  let winningLines = [];
+  let isJackpot = false;
+
+  lines.forEach(line => {
+    const matched = checkLine(line.cells);
+    if(matched >= 0){
+      const sym = SYMBOLS[matched];
+      let mult = sym.mult;
+      // center line 3x WILD = JACKPOT
+      const allWild = line.cells.every(c => SYMBOLS[c].id === 'wild');
+      if(allWild && line.type==='row' && line.row===1){
+        mult = 100;
+        isJackpot = true;
+      }
+      const payout = state.bet * mult;
+      totalWin += payout;
+      winningLines.push({line, sym, payout, mult, jackpot: isJackpot && allWild && line.row===1});
+    }
+  });
+
+  // chum free spins: count chums on middle row
+  const chumId = SYMBOLS.findIndex(s=>s.id==='chum');
+  const middleRow = board[1];
+  const chumCount = middleRow.filter(c => c === chumId).length;
+  let freeAwarded = 0;
+  if(chumCount === 3){
+    freeAwarded = 5;
+    state.freeSpins += freeAwarded;
+  }
+
+  // apply win
+  state.lastWin = totalWin;
+  state.totalWin += totalWin;
+  state.balance += totalWin;
+
+  if(isJackpot){
+    triggerJackpot(totalWin);
+  } else if(totalWin > 0){
+    msgEl.className = 'msg win';
+    let text = `Выигрыш +${fmt(totalWin)} монет`;
+    if(freeAwarded) text += ` · +${freeAwarded} фриспинов!`;
+    msgEl.textContent = text;
+    spawnCoins(totalWin);
+  } else if(freeAwarded){
+    msgEl.className = 'msg win';
+    msgEl.textContent = `3 чума! +${freeAwarded} фриспинов 🏕️`;
+  } else {
+    msgEl.className = 'msg lose';
+    msgEl.textContent = state.freeSpins > 0
+      ? 'Тундра молчит. Ещё фриспин впереди…'
+      : 'Тундра молчит. Крути ещё.';
+  }
+
+  // draw winlines
+  drawWinLines(winningLines);
+
+  // double up offer (not on jackpot, not on free spins)
+  if(totalWin > 0 && !isJackpot && state.freeSpins === 0 && state.autoSpins === 0 && totalWin <= state.balance * 2){
+    setTimeout(()=>offerDouble(totalWin), 700);
+  }
+}
+
+function drawWinLines(wins){
+  const reelsContainer = document.getElementById('reels');
+  const SH = SYMBOL_H();
+  wins.forEach((w, i) => {
+    if(w.line.type === 'row'){
+      const line = document.createElement('div');
+      line.className = 'winline';
+      // reel has 3 visible symbols at bottom after translation → rows 0,1,2 from top
+      // we want to position based on visible rows (top=0 mid=1 bot=2)
+      const rowIdx = w.line.row;
+      line.style.top = (10 + rowIdx * SH) + 'px';
+      line.style.margin = '0 10px';
+      reelsContainer.appendChild(line);
+      setTimeout(()=>line.remove(), 3500);
+    } else {
+      // diagonal: 3 boxes
+      ['\\','/'].forEach(d=>{});
+      const cells = [0,1,2];
+      cells.forEach(i=>{
+        const row = w.line.dir === '\\' ? i : 2-i;
+        const col = i;
+        const cell = document.createElement('div');
+        cell.className = 'winline';
+        cell.style.top = (10 + row * SH) + 'px';
+        // position per reel using column
+        const reelWidth = `calc((100% - 20px - 20px) / 3)`;
+        cell.style.left = `calc(10px + ${col} * ((100% - 40px) / 3 + 10px))`;
+        cell.style.right = 'auto';
+        cell.style.width = `calc((100% - 40px) / 3)`;
+        reelsContainer.appendChild(cell);
+        setTimeout(()=>cell.remove(), 3500);
+      });
+    }
+  });
+}
+
+/* ========== EFFECTS ========== */
+function spawnCoins(amount){
+  const n = Math.min(30, 8 + Math.floor(Math.log2(amount/10+1)*4));
+  const rect = spinBtn.getBoundingClientRect();
+  for(let i=0;i<n;i++){
+    const c = document.createElement('div');
+    c.className = 'coin';
+    c.textContent = ['💎','🪙','✨','💰'][Math.floor(Math.random()*4)];
+    c.style.left = (rect.left + rect.width/2 + (Math.random()*60-30)) + 'px';
+    c.style.top = rect.top + 'px';
+    c.style.setProperty('--cx', (Math.random()*200-100)+'px');
+    c.style.animationDelay = (Math.random()*.3)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 1500);
+  }
+}
 function spawnFlakes(n){
   const chars = ['❄','❅','❆','✦','✳'];
-  for (let i=0;i<n;i++){
+  for(let i=0;i<n;i++){
     const f = document.createElement('span');
-    f.className = 'flake';
+    f.className='flake';
     f.textContent = chars[Math.floor(Math.random()*chars.length)];
-    f.style.left = Math.random()*100 + 'vw';
-    f.style.fontSize = (10 + Math.random()*22) + 'px';
-    f.style.setProperty('--dx', (Math.random()*200 - 100) + 'px');
-    f.style.animationDuration = (6 + Math.random()*6) + 's';
-    f.style.animationDelay = (Math.random()*1.5) + 's';
+    f.style.left = Math.random()*100+'vw';
+    f.style.fontSize = (12+Math.random()*22)+'px';
+    f.style.setProperty('--dx', (Math.random()*200-100)+'px');
+    f.style.animationDuration = (5+Math.random()*5)+'s';
+    f.style.animationDelay = (Math.random()*1)+'s';
+    f.style.color = ['#fff','#66FCF1','#FFD86B'][Math.floor(Math.random()*3)];
     document.body.appendChild(f);
-    setTimeout(() => f.remove(), 13000);
+    setTimeout(()=>f.remove(), 12000);
   }
 }
+function triggerJackpot(amount){
+  msgEl.className = 'msg jackpot';
+  msgEl.textContent = `ДЖЕКПОТ! +${fmt(amount)} 🎰`;
+  const flash = document.getElementById('jpFlash');
+  const title = document.getElementById('jpTitle');
+  flash.classList.remove('on'); void flash.offsetWidth; flash.classList.add('on');
+  title.classList.remove('on'); void title.offsetWidth; title.classList.add('on');
+  spawnFlakes(120);
+  spawnCoins(amount * 2);
+  setTimeout(()=>{ flash.classList.remove('on'); title.classList.remove('on'); }, 2600);
+}
 
-tempBtn.addEventListener('click', () => {
-  tempIdx = Math.min(tempIdx + 1, tempStages.length - 1);
-  const stage = tempStages[tempIdx];
-  tempValue.textContent = stage.v;
-  tempLabel.textContent = stage.l;
+/* ========== DOUBLE UP ========== */
+const dblModal = $('#dblModal');
+const dblAmount = $('#dblAmount');
+const dblTake = $('#dblTake');
 
-  // progressive frost
-  const intensity = tempIdx / (tempStages.length - 1);
-  frost.classList.add('active');
-  frost.style.opacity = (0.25 + intensity * 0.55).toFixed(2);
-
-  spawnFlakes(40 + tempIdx * 20);
-
-  if (tempIdx === tempStages.length - 1){
-    tempBtn.innerHTML = '<span>Оттаять ←</span>';
-    tempBtn.dataset.reset = '1';
-  }
-  if (tempBtn.dataset.reset === '1' && tempIdx === tempStages.length - 1){
-    tempBtn.addEventListener('click', () => {
-      tempIdx = 0;
-      const s = tempStages[0];
-      tempValue.textContent = s.v;
-      tempLabel.textContent = s.l;
-      frost.classList.remove('active');
-      frost.style.opacity = '';
-      tempBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Узнать температуру';
-      tempBtn.dataset.reset = '';
-    }, { once:true });
-  }
-});
-
-/* ======= Share buttons ======= */
-document.querySelectorAll('.share-btn').forEach(btn => {
-  btn.addEventListener('click', async () => {
-    const url = location.href;
-    const text = 'Яр‑Сале: Пульс ледяной пустыни — 700 000 оленей, северное сияние и 5G посреди вечной мерзлоты.';
-    const mode = btn.dataset.share;
-    if (mode === 'tg'){
-      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
-    } else if (mode === 'vk'){
-      window.open(`https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`, '_blank');
-    } else if (mode === 'copy'){
-      try{
-        await navigator.clipboard.writeText(url);
-        document.querySelectorAll('#copyLabel, #copyLabel2').forEach(l => l.textContent = 'Скопировано ✓');
-        setTimeout(() => {
-          document.querySelectorAll('#copyLabel, #copyLabel2').forEach(l => l.textContent = 'Скопировать ссылку');
-        }, 1800);
-      } catch(e){
-        alert('Ссылка: ' + url);
-      }
+let dblStake = 0;
+function offerDouble(amount){
+  dblStake = amount;
+  dblAmount.textContent = '+' + fmt(amount);
+  dblModal.classList.add('on');
+}
+dblTake.onclick = () => { dblModal.classList.remove('on'); save(); updateUI(); };
+document.querySelectorAll('.dir-btn').forEach(b=>{
+  b.onclick = () => {
+    const pick = b.dataset.dir;
+    const winning = Math.random() < 0.5 ? 'left' : 'right';
+    dblModal.classList.remove('on');
+    if(pick === winning){
+      // double
+      state.balance += dblStake;
+      state.totalWin += dblStake;
+      state.lastWin += dblStake;
+      msgEl.className = 'msg win';
+      msgEl.textContent = `Олень побежал ${winning==='left'?'влево':'вправо'}! Выигрыш удвоен: +${fmt(dblStake)}`;
+      spawnCoins(dblStake);
+    } else {
+      // lose doubled amount
+      state.balance -= dblStake;
+      state.totalWin -= dblStake;
+      state.lastWin = Math.max(0, state.lastWin - dblStake);
+      msgEl.className = 'msg lose';
+      msgEl.textContent = `Олень побежал ${winning==='left'?'влево':'вправо'}. Выигрыш заморожен.`;
     }
-  });
+    save(); updateUI();
+  };
 });
 
-/* ======= Tile tilt (desktop) ======= */
-if (window.matchMedia('(pointer:fine)').matches) {
-  document.querySelectorAll('.tile').forEach(tile => {
-    tile.addEventListener('pointermove', e => {
-      const r = tile.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - .5;
-      const y = (e.clientY - r.top) / r.height - .5;
-      tile.style.transform = `perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`;
-    });
-    tile.addEventListener('pointerleave', () => {
-      tile.style.transform = '';
-    });
-  });
+/* ========== CONTROLS ========== */
+spinBtn.onclick = () => { state.autoSpins = 0; spin(); };
+betMinus.onclick = () => {
+  if(state.betIdx > 0){ state.betIdx--; state.bet = BETS[state.betIdx]; save(); updateUI(); }
+};
+betPlus.onclick = () => {
+  if(state.betIdx < BETS.length-1){ state.betIdx++; state.bet = BETS[state.betIdx]; save(); updateUI(); }
+};
+maxBtn.onclick = () => { state.betIdx = BETS.length-1; state.bet = BETS[state.betIdx]; save(); updateUI(); };
+autoBtn.onclick = () => {
+  state.autoSpins = 10;
+  msgEl.className = 'msg';
+  msgEl.textContent = 'Автоспин ×10 запущен…';
+  spin();
+};
+
+// keyboard: space = spin
+window.addEventListener('keydown', e => {
+  if(e.code==='Space' && !state.spinning && !dblModal.classList.contains('on')){
+    e.preventDefault(); spin();
+  }
+});
+
+/* ========== PAYTABLE RENDER ========== */
+function renderPaytable(){
+  const el = $('#paytable');
+  el.innerHTML = SYMBOLS.map(s => `
+    <div class="pt-item">
+      <div class="emoji">${s.emoji}</div>
+      <div class="mult">×${s.mult}</div>
+      <div class="name">${s.name}</div>
+    </div>
+  `).join('');
 }
+
+/* ========== INIT ========== */
+renderPaytable();
+initReels();
+updateUI();
 </script>
 </body>
 </html>
