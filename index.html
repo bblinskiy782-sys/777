@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Яр-Сале — Пульс ледяной пустыни | Ямальский район</title>
+<meta name="description" content="Яр-Сале и Ямальский район — место, где вечная мерзлота встречает будущее. 700 000 оленей, тысячи километров тундры, живые традиции ненцев и арктический футуризм." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#0B0C10;
+    --bg-1:#1F2833;
+    --neon:#66FCF1;
+    --teal:#45A29E;
+    --purple:#8A2BE2;
+    --pink:#C850C0;
+  }
+
+  *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg-0);
+    color:#E8F1F2;
+    font-family:'Inter', system-ui, sans-serif;
+    overflow-x:hidden;
+    cursor:default;
+  }
+  h1,h2,h3,.display{
+    font-family:'Unbounded', sans-serif;
+    letter-spacing:-0.02em;
+  }
+
+  /* ===== Custom cursor glow ===== */
+  .cursor-glow{
+    position:fixed; top:0; left:0;
+    width:560px; height:560px; pointer-events:none; z-index:1;
+    background:radial-gradient(circle, rgba(102,252,241,0.10) 0%, rgba(102,252,241,0) 60%);
+    transform:translate(-50%,-50%);
+    transition:transform .15s ease-out;
+    mix-blend-mode:screen;
+  }
+
+  /* ===== Aurora background ===== */
+  .aurora-wrap{
+    position:absolute; inset:0; overflow:hidden; z-index:0;
+    background:
+      radial-gradient(1200px 600px at 70% -10%, rgba(138,43,226,0.35), transparent 60%),
+      radial-gradient(900px 500px at 10% 10%, rgba(69,162,158,0.35), transparent 60%),
+      linear-gradient(180deg, #05070A 0%, #0B0C10 60%, #06080B 100%);
+  }
+  .aurora{
+    position:absolute; inset:-20%;
+    filter:blur(60px) saturate(140%);
+    opacity:.55;
+    mix-blend-mode:screen;
+    animation:aurora 18s ease-in-out infinite alternate;
+  }
+  .aurora.a1{
+    background:
+      radial-gradient(40% 30% at 30% 50%, #66FCF1 0%, transparent 70%),
+      radial-gradient(35% 25% at 70% 40%, #45A29E 0%, transparent 70%),
+      radial-gradient(30% 20% at 50% 60%, #8A2BE2 0%, transparent 70%);
+  }
+  .aurora.a2{
+    background:
+      radial-gradient(30% 20% at 20% 30%, #C850C0 0%, transparent 70%),
+      radial-gradient(40% 25% at 80% 60%, #66FCF1 0%, transparent 70%);
+    animation-duration:24s;
+    opacity:.35;
+  }
+  @keyframes aurora{
+    0%  { transform:translate3d(-5%,-3%,0) rotate(0deg)   scale(1.05); }
+    50% { transform:translate3d(4%, 2%,0)  rotate(6deg)   scale(1.15); }
+    100%{ transform:translate3d(-3%,4%,0)  rotate(-4deg)  scale(1.08); }
+  }
+
+  /* ===== Starfield ===== */
+  .stars, .stars::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 80% 10%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 40% 70%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 65% 85%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 10% 80%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 90% 50%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 20%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 55%, #fff 50%, transparent 51%);
+    background-size: 600px 600px;
+    opacity:.6;
+    animation:twinkle 6s ease-in-out infinite alternate;
+  }
+  .stars::after{
+    background-size:900px 900px;
+    opacity:.35;
+    animation-duration:9s;
+  }
+  @keyframes twinkle{
+    from{ opacity:.25; } to{ opacity:.75; }
+  }
+
+  /* ===== Noise ===== */
+  .noise{
+    position:absolute; inset:0; pointer-events:none; z-index:2;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+
+  /* ===== Glass ===== */
+  .glass{
+    background:linear-gradient(180deg, rgba(31,40,51,0.55), rgba(11,12,16,0.35));
+    border:1px solid rgba(102,252,241,0.18);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-radius:24px;
+  }
+  .glass-hover{ transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s; }
+  .glass-hover:hover{
+    transform:translateY(-6px);
+    border-color:rgba(102,252,241,0.5);
+    box-shadow:
+      0 20px 60px -20px rgba(102,252,241,0.25),
+      inset 0 0 40px rgba(102,252,241,0.05);
+  }
+
+  /* ===== Neon text ===== */
+  .neon{
+    color:#E8FFFD;
+    text-shadow:
+      0 0 10px rgba(102,252,241,.45),
+      0 0 30px rgba(102,252,241,.25),
+      0 0 60px rgba(69,162,158,.15);
+  }
+  .gradient-text{
+    background:linear-gradient(90deg,#66FCF1 0%,#45A29E 40%, #C850C0 80%, #8A2BE2 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  /* ===== Buttons ===== */
+  .btn-neon{
+    position:relative;
+    display:inline-flex; align-items:center; gap:.75rem;
+    padding:1.05rem 2rem;
+    border-radius:999px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:#03201E;
+    background:linear-gradient(90deg,#66FCF1,#45A29E);
+    overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease;
+    box-shadow:
+      0 10px 40px -10px rgba(102,252,241,0.6),
+      inset 0 0 20px rgba(255,255,255,0.2);
+  }
+  .btn-neon::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform:translateX(-120%);
+    transition:transform .7s ease;
+  }
+  .btn-neon:hover{ transform:translateY(-2px) scale(1.02);
+    box-shadow:0 16px 60px -10px rgba(102,252,241,0.85), inset 0 0 20px rgba(255,255,255,.3);
+  }
+  .btn-neon:hover::before{ transform:translateX(120%); }
+
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:1rem 1.6rem;
+    border-radius:999px;
+    border:1px solid rgba(102,252,241,.35);
+    color:#E8FFFD;
+    transition:all .3s;
+  }
+  .btn-ghost:hover{
+    border-color:#66FCF1;
+    background:rgba(102,252,241,.08);
+    box-shadow:0 0 30px rgba(102,252,241,.25);
+  }
+
+  /* ===== Reveal on scroll ===== */
+  .reveal{ opacity:0; transform:translateY(40px); transition:opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  .reveal.delay-1{ transition-delay:.12s; }
+  .reveal.delay-2{ transition-delay:.24s; }
+  .reveal.delay-3{ transition-delay:.36s; }
+  .reveal.delay-4{ transition-delay:.48s; }
+
+  /* ===== Marquee ===== */
+  .marquee{ overflow:hidden; mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .marquee-track{
+    display:flex; gap:3rem; width:max-content;
+    animation:marquee 40s linear infinite;
+  }
+  @keyframes marquee{
+    from{ transform:translateX(0); }
+    to  { transform:translateX(-50%); }
+  }
+
+  /* ===== Frost overlay ===== */
+  .frost{
+    position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0;
+    transition:opacity 1.2s ease;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,0.35), transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='4' seed='5'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -0.1'/></filter><rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.55'/></svg>");
+    background-blend-mode:screen;
+    mix-blend-mode:screen;
+  }
+  .frost.active{ opacity:.7; }
+
+  /* ===== Snowflakes ===== */
+  .flake{
+    position:fixed; top:-10vh; color:#D8FBFB;
+    pointer-events:none; z-index:61;
+    animation:fall linear forwards;
+    text-shadow:0 0 8px rgba(102,252,241,.6);
+  }
+  @keyframes fall{
+    0%{ transform:translate3d(0,-10vh,0) rotate(0deg); opacity:0; }
+    10%{ opacity:1; }
+    100%{ transform:translate3d(var(--dx),110vh,0) rotate(360deg); opacity:.2; }
+  }
+
+  /* ===== Hero title effects ===== */
+  .title-line{ overflow:hidden; display:block; }
+  .title-line > span{
+    display:inline-block;
+    animation:riseUp 1.1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .title-line.l2 > span{ animation-delay:.15s; }
+  .title-line.l3 > span{ animation-delay:.3s; }
+  @keyframes riseUp{
+    from{ transform:translateY(110%); opacity:0; }
+    to  { transform:none; opacity:1; }
+  }
+
+  /* ===== Ticker numbers ===== */
+  .ticker{
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* ===== Image tiles ===== */
+  .tile{
+    position:relative; overflow:hidden; border-radius:24px; isolation:isolate;
+  }
+  .tile img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 1.4s cubic-bezier(.2,.8,.2,1), filter .6s;
+    filter:grayscale(.2) contrast(1.05) brightness(.85);
+  }
+  .tile:hover img{ transform:scale(1.08); filter:none; }
+  .tile::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(11,12,16,.9) 100%);
+    z-index:1;
+  }
+  .tile .cap{
+    position:absolute; inset:auto 0 0 0; padding:1.25rem 1.5rem; z-index:2;
+  }
+
+  /* ===== Section divider glow ===== */
+  .divider{
+    height:1px; width:100%;
+    background:linear-gradient(90deg, transparent, rgba(102,252,241,.5), transparent);
+  }
+
+  /* ===== Badge ===== */
+  .badge{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.4rem .85rem; border-radius:999px;
+    border:1px solid rgba(102,252,241,.3);
+    background:rgba(102,252,241,.06);
+    font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+    color:#A8FFFB;
+  }
+  .dot{ width:6px; height:6px; border-radius:999px; background:#66FCF1; box-shadow:0 0 10px #66FCF1; }
+
+  /* ===== Temperature card ===== */
+  .temp-card{
+    background:
+      radial-gradient(600px 200px at 50% 0%, rgba(102,252,241,.15), transparent 60%),
+      linear-gradient(180deg, rgba(31,40,51,.7), rgba(11,12,16,.5));
+  }
+
+  /* Parallax floats */
+  .float-slow{ animation:float 10s ease-in-out infinite alternate; }
+  .float-med{ animation:float 7s ease-in-out infinite alternate; }
+  @keyframes float{
+    from{ transform:translateY(-8px); }
+    to  { transform:translateY(8px); }
+  }
+
+  /* Nav underline */
+  .nav-link{ position:relative; }
+  .nav-link::after{
+    content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+    background:#66FCF1; transition:width .4s;
+  }
+  .nav-link:hover::after{ width:100%; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#0B0C10; }
+  ::-webkit-scrollbar-thumb{ background:linear-gradient(#45A29E,#8A2BE2); border-radius:10px; }
+
+  /* Utility */
+  .glow-ring{
+    box-shadow:
+      0 0 0 1px rgba(102,252,241,.25),
+      0 30px 80px -20px rgba(138,43,226,.35),
+      inset 0 0 60px rgba(102,252,241,.05);
+  }
+
+  @media (max-width: 768px){
+    .hero-title{ font-size:clamp(2.6rem, 12vw, 4.8rem) !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="frost" id="frost"></div>
+
+<!-- ========== NAV ========== -->
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="mx-auto max-w-7xl px-6 mt-4">
+    <nav class="glass flex items-center justify-between px-5 py-3">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="relative inline-flex w-9 h-9 items-center justify-center rounded-full" style="background:radial-gradient(circle at 30% 30%, #66FCF1, #8A2BE2 80%);">
+          <span class="absolute inset-0 rounded-full" style="box-shadow:0 0 20px #66FCF1;"></span>
+          <span class="relative text-[#0B0C10] font-black">Я</span>
+        </span>
+        <div class="leading-tight">
+          <div class="text-sm tracking-[0.25em] text-white/70">ЯР‑САЛЕ</div>
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">YAMAL · 66°N</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/80">
+        <a class="nav-link" href="#magic">Магия Ямала</a>
+        <a class="nav-link" href="#oasis">Оазис в мерзлоте</a>
+        <a class="nav-link" href="#viral">70°C интерактив</a>
+        <a class="nav-link" href="#visit">Визит</a>
+      </div>
+      <a href="#visit" class="btn-ghost text-sm hidden sm:inline-flex">Запланировать поездку →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <div class="aurora-wrap">
+    <div class="stars"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="noise"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-20 w-full">
+    <div class="flex flex-col gap-8">
+      <div class="reveal flex flex-wrap items-center gap-3">
+        <span class="badge"><span class="dot"></span> 66°50′ с. ш. · Ямало‑Ненецкий АО</span>
+        <span class="badge">−52°C зимой · +30°C летом</span>
+        <span class="badge">Полярный день · 60 суток без заката</span>
+      </div>
+
+      <h1 class="hero-title display font-black leading-[0.95]" style="font-size:clamp(3rem,8vw,7.5rem)">
+        <span class="title-line l1"><span>Яр‑Сале.</span></span>
+        <span class="title-line l2"><span class="gradient-text">Пульс ледяной</span></span>
+        <span class="title-line l3"><span class="neon">пустыни.</span></span>
+      </h1>
+
+      <p class="reveal delay-1 max-w-2xl text-lg md:text-xl text-white/75">
+        Здесь вечная мерзлота хранит след мамонтов, а над крышами горит северное сияние.
+        700 000 оленей, бескрайняя тундра, ненцы в малицах и 5G — всё на одном меридиане.
+        Это не край света. Это его <span class="text-[#66FCF1]">начало</span>.
+      </p>
+
+      <div class="reveal delay-2 flex flex-wrap items-center gap-4">
+        <a href="#magic" class="btn-neon">
+          Прикоснуться к Северу
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#viral" class="btn-ghost">
+          <span class="w-2 h-2 rounded-full bg-[#66FCF1] animate-pulse"></span>
+          Ощутить мороз в −50°C
+        </a>
+      </div>
+
+      <!-- Big stats -->
+      <div class="reveal delay-3 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+        <div class="glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">ПЛОЩАДЬ РАЙОНА</div>
+          <div class="mt-2 display text-3xl md:text-4xl gradient-text">148 000 км²</div>
+          <div class="text-xs text-white/50 mt-1">больше Греции</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">ОЛЕНЕЙ</div>
+          <div class="mt-2 display text-3xl md:text-4xl gradient-text ticker" data-counter="700000" data-suffix="">0</div>
+          <div class="text-xs text-white/50 mt-1">крупнейшее стадо планеты</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">ЖИТЕЛЕЙ ЯР‑САЛЕ</div>
+          <div class="mt-2 display text-3xl md:text-4xl gradient-text ticker" data-counter="7000" data-suffix="+">0</div>
+          <div class="text-xs text-white/50 mt-1">один на 21 км² тундры</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">ОСНОВАН</div>
+          <div class="mt-2 display text-3xl md:text-4xl gradient-text">1927</div>
+          <div class="text-xs text-white/50 mt-1">почти век на мерзлоте</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/50 text-xs tracking-[0.3em] flex flex-col items-center gap-3">
+    <span>СКРОЛЛ · ВГЛУБЬ СЕВЕРА</span>
+    <span class="block w-[1px] h-10 bg-gradient-to-b from-[#66FCF1] to-transparent"></span>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<section class="py-10 border-y border-white/5 bg-[#06080B]/80 relative z-10">
+  <div class="marquee">
+    <div class="marquee-track display text-4xl md:text-6xl text-white/10 whitespace-nowrap">
+      <span>· ТУНДРА ·</span>
+      <span style="color:rgba(102,252,241,.25)">· СЕВЕРНОЕ СИЯНИЕ ·</span>
+      <span>· НЕНЦЫ ·</span>
+      <span style="color:rgba(200,80,192,.25)">· ОЛЕНИ ·</span>
+      <span>· ОБСКАЯ ГУБА ·</span>
+      <span style="color:rgba(102,252,241,.25)">· ПОЛЯРНЫЙ ДЕНЬ ·</span>
+      <span>· МАЛИЦА ·</span>
+      <span style="color:rgba(138,43,226,.35)">· ЯМАЛ ·</span>
+      <!-- duplicate -->
+      <span>· ТУНДРА ·</span>
+      <span style="color:rgba(102,252,241,.25)">· СЕВЕРНОЕ СИЯНИЕ ·</span>
+      <span>· НЕНЦЫ ·</span>
+      <span style="color:rgba(200,80,192,.25)">· ОЛЕНИ ·</span>
+      <span>· ОБСКАЯ ГУБА ·</span>
+      <span style="color:rgba(102,252,241,.25)">· ПОЛЯРНЫЙ ДЕНЬ ·</span>
+      <span>· МАЛИЦА ·</span>
+      <span style="color:rgba(138,43,226,.35)">· ЯМАЛ ·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MAGIC OF YAMAL ========== -->
+<section id="magic" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full blur-3xl opacity-40"
+       style="background:radial-gradient(circle, #8A2BE2 0%, transparent 60%);"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <div class="reveal max-w-2xl">
+        <span class="badge mb-4"><span class="dot"></span> 01 — Магия Ямала</span>
+        <h2 class="display text-5xl md:text-7xl font-black leading-[0.95]">
+          Планета, которая <span class="gradient-text">ещё не кончилась.</span>
+        </h2>
+      </div>
+      <p class="reveal delay-1 text-white/65 max-w-md">
+        Ямал — «край земли» по‑ненецки. Но стоит ступить сюда — и понимаешь:
+        край — это не конец. Это точка, где начинается всё настоящее.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Card 1 -->
+      <article class="reveal glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
+        <div class="text-5xl display gradient-text">700K</div>
+        <h3 class="display text-2xl font-bold">Оленья цивилизация</h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Крупнейшее в мире домашнее стадо северных оленей. Каждую весну тысячи ненцев
+          кочуют с ними на север — это живой, дышащий Ямал, который не меняется веками.
+        </p>
+        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">РЕКОРД ПЛАНЕТЫ →</div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="reveal delay-1 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
+        <div class="text-5xl display gradient-text">−52°C</div>
+        <h3 class="display text-2xl font-bold">Климат, который уважают</h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Зимой мороз прожигает до костей, летом комары встают стеной. Природа здесь не
+          декоративна — она главный автор сценария. И каждый, кто выжил, получает её автограф.
+        </p>
+        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">ПОЛЯРНЫЙ ХАРАКТЕР →</div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="reveal delay-2 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
+        <div class="text-5xl display gradient-text">∞</div>
+        <h3 class="display text-2xl font-bold">Тундра без горизонта</h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          148 000 км² мхов, лишайников и белого безмолвия. Здесь GPS теряется в красоте,
+          а глаз — в масштабе. Ямал — последний в Европе уголок, где природа побеждает карту.
+        </p>
+        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">БЕСКОНЕЧНОСТЬ →</div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="reveal delay-3 glass glass-hover p-6 flex flex-col gap-4 min-h-[360px]">
+        <div class="text-5xl display gradient-text">XXI</div>
+        <h3 class="display text-2xl font-bold">Традиция × будущее</h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Шаман с бубном и инженер с дроном пьют чай в одном чуме. Ненецкий язык,
+          олений промысел и 5G‑связь — Ямал не выбирает между эпохами. Он склеивает их.
+        </p>
+        <div class="mt-auto flex items-center gap-2 text-[#66FCF1] text-xs tracking-[0.25em]">ДВЕ ЭПОХИ →</div>
+      </article>
+    </div>
+
+    <!-- Images row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+      <div class="reveal tile aspect-[4/5] glow-ring">
+        <img src="https://source.unsplash.com/600x800/?arctic,tundra" alt="Тундра Ямала"/>
+        <div class="cap">
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ТУНДРА</div>
+          <div class="display text-lg">Белое безмолвие</div>
+        </div>
+      </div>
+      <div class="reveal delay-1 tile aspect-[4/5] glow-ring">
+        <img src="https://source.unsplash.com/600x800/?reindeer,snow" alt="Северный олень"/>
+        <div class="cap">
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ОЛЕНИ</div>
+          <div class="display text-lg">Живое золото Севера</div>
+        </div>
+      </div>
+      <div class="reveal delay-2 tile aspect-[4/5] glow-ring">
+        <img src="https://source.unsplash.com/600x800/?aurora,borealis" alt="Северное сияние"/>
+        <div class="cap">
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">СИЯНИЕ</div>
+          <div class="display text-lg">Небо, которое танцует</div>
+        </div>
+      </div>
+      <div class="reveal delay-3 tile aspect-[4/5] glow-ring">
+        <img src="https://source.unsplash.com/600x800/?nenets,arctic,people" alt="Ненцы"/>
+        <div class="cap">
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">НЕНЦЫ</div>
+          <div class="display text-lg">Люди, что старше карты</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== YAR-SALE: OASIS ========== -->
+<section id="oasis" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-40"
+       style="background:radial-gradient(circle, #45A29E 0%, transparent 60%);"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative grid md:grid-cols-12 gap-10 items-center">
+    <div class="md:col-span-6 reveal">
+      <div class="tile aspect-[4/5] glow-ring">
+        <img src="https://source.unsplash.com/900x1200/?arctic,village,snow" alt="Яр-Сале зимой"/>
+        <div class="cap">
+          <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">ЯР‑САЛЕ · ЗИМА</div>
+          <div class="display text-xl">Огни в −45°C</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:col-span-6">
+      <span class="badge mb-6 reveal"><span class="dot"></span> 02 — Яр‑Сале</span>
+      <h2 class="reveal display text-5xl md:text-7xl font-black leading-[0.95] mb-6">
+        Оазис <span class="gradient-text">в вечной мерзлоте.</span>
+      </h2>
+      <p class="reveal delay-1 text-white/75 text-lg leading-relaxed mb-6">
+        Яр‑Сале — «песчаный мыс» на языке ненцев. Но сегодня это не просто поселок
+        у Обской губы, а столица Ямальского района и его сердце, бьющееся в ритме −45°.
+      </p>
+      <p class="reveal delay-2 text-white/65 leading-relaxed mb-10">
+        Здесь дома стоят на сваях, чтобы не растопить вековой лёд. Кофейни наливают флэт‑уайт,
+        пока за окном уходит на север упряжка. Школа с интерактивными досками соседствует с
+        чумом — и это не противоречие, а формула местной жизни. Тёплый свет в окнах среди
+        белого океана — лучший символ того, что человек может не просто выжить в Арктике,
+        а жить в ней красиво.
+      </p>
+
+      <div class="grid grid-cols-2 gap-4 mb-10">
+        <div class="reveal glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">АЭРОПОРТ</div>
+          <div class="display text-2xl mt-1">Салехард · 120 км</div>
+          <div class="text-xs text-white/50 mt-1">зимник + вертолёт</div>
+        </div>
+        <div class="reveal delay-1 glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">ИНТЕРНЕТ</div>
+          <div class="display text-2xl mt-1">4G / Starlink</div>
+          <div class="text-xs text-white/50 mt-1">TikTok из чума — да</div>
+        </div>
+        <div class="reveal delay-2 glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">СЕЗОН</div>
+          <div class="display text-2xl mt-1">10 мес. зимы</div>
+          <div class="text-xs text-white/50 mt-1">и 2 — ожидания зимы</div>
+        </div>
+        <div class="reveal delay-3 glass p-5">
+          <div class="text-[11px] tracking-[0.25em] text-white/50">КУХНЯ</div>
+          <div class="display text-2xl mt-1">Строганина</div>
+          <div class="text-xs text-white/50 mt-1">муксун, нельма, оленина</div>
+        </div>
+      </div>
+
+      <a href="#visit" class="btn-neon reveal">
+        Спланировать маршрут
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== VIRAL / INTERACTIVE ========== -->
+<section id="viral" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0 opacity-30 pointer-events-none"
+       style="background:radial-gradient(700px 400px at 50% 50%, rgba(102,252,241,.25), transparent 60%);"></div>
+
+  <div class="mx-auto max-w-6xl px-6 relative">
+    <div class="text-center mb-16">
+      <span class="badge reveal"><span class="dot"></span> 03 — Интерактив</span>
+      <h2 class="reveal delay-1 display text-5xl md:text-7xl font-black leading-[0.95] mt-4">
+        Нажми — и <span class="gradient-text">станет холодно.</span>
+      </h2>
+      <p class="reveal delay-2 text-white/65 max-w-2xl mx-auto mt-4">
+        Самый честный тест: сможешь ли ты вынести ямальский мороз хотя бы 10 секунд?
+        Спойлер — экран покроется инеем. У нас так каждое утро.
+      </p>
+    </div>
+
+    <div class="reveal glass temp-card p-8 md:p-14 flex flex-col items-center text-center glow-ring">
+      <div class="text-[11px] tracking-[0.4em] text-[#66FCF1]">ТЕМПЕРАТУРА ЗА ОКНОМ, ЯР‑САЛЕ</div>
+
+      <div id="tempValue" class="display text-7xl md:text-9xl font-black leading-none mt-6 ticker">
+        +22°
+      </div>
+
+      <div id="tempLabel" class="text-white/60 mt-4">Сейчас ты в комнате. Нажимай — и почувствуй Север.</div>
+
+      <button id="tempBtn" class="btn-neon mt-8">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Узнать температуру
+      </button>
+
+      <div class="grid grid-cols-3 gap-4 md:gap-10 mt-12 w-full max-w-3xl">
+        <div>
+          <div class="display text-2xl md:text-4xl gradient-text">−52°</div>
+          <div class="text-xs text-white/50 mt-1">рекорд зимы</div>
+        </div>
+        <div>
+          <div class="display text-2xl md:text-4xl gradient-text">60</div>
+          <div class="text-xs text-white/50 mt-1">суток полярного дня</div>
+        </div>
+        <div>
+          <div class="display text-2xl md:text-4xl gradient-text">40</div>
+          <div class="text-xs text-white/50 mt-1">суток полярной ночи</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="reveal flex flex-wrap justify-center gap-3 mt-10">
+      <button class="btn-ghost share-btn" data-share="tg">
+        <span>Telegram</span>
+      </button>
+      <button class="btn-ghost share-btn" data-share="vk">
+        <span>ВКонтакте</span>
+      </button>
+      <button class="btn-ghost share-btn" data-share="copy">
+        <span id="copyLabel">Скопировать ссылку</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== VISIT / CTA ========== -->
+<section id="visit" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="aurora a1 opacity-40"></div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-6 relative">
+    <div class="reveal glass p-10 md:p-16 text-center glow-ring">
+      <span class="badge"><span class="dot"></span> 04 — Приезжай</span>
+      <h2 class="display text-5xl md:text-7xl font-black leading-[0.95] mt-4">
+        Север — это не <span class="gradient-text">далеко.</span><br/>
+        Это — <span class="neon">вовремя.</span>
+      </h2>
+      <p class="text-white/70 mt-6 max-w-2xl mx-auto">
+        Туристы возвращаются отсюда другими. Инвесторы находят территорию, где будущее
+        ещё можно построить с нуля. Медиа — кадр, который не повторит ни один нейросетевой
+        генератор. Ямал ждёт. И он терпеливый.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-10">
+        <a href="#top" class="btn-neon">
+          Купить билет на Ямал
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:hello@yar-sale.ru" class="btn-ghost">Связаться с администрацией</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="relative pt-16 pb-10 border-t border-white/5 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="relative inline-flex w-9 h-9 items-center justify-center rounded-full" style="background:radial-gradient(circle at 30% 30%, #66FCF1, #8A2BE2 80%);">
+            <span class="relative text-[#0B0C10] font-black">Я</span>
+          </span>
+          <div class="leading-tight">
+            <div class="text-sm tracking-[0.25em] text-white/70">ЯР‑САЛЕ</div>
+            <div class="text-[10px] tracking-[0.3em] text-[#66FCF1]">YAMAL · 66°N</div>
+          </div>
+        </div>
+        <p class="text-white/55 text-sm leading-relaxed">
+          Официальный цифровой голос Ямальского района. Где тундра встречает Wi‑Fi,
+          а традиция — будущее.
+        </p>
+      </div>
+      <div>
+        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">НАВИГАЦИЯ</div>
+        <ul class="space-y-2 text-white/75 text-sm">
+          <li><a class="nav-link" href="#magic">Магия Ямала</a></li>
+          <li><a class="nav-link" href="#oasis">Яр‑Сале</a></li>
+          <li><a class="nav-link" href="#viral">Мороз‑тест</a></li>
+          <li><a class="nav-link" href="#visit">Визит</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">СОЦСЕТИ</div>
+        <ul class="space-y-2 text-white/75 text-sm">
+          <li><a class="nav-link" href="#">Telegram · @yarsale</a></li>
+          <li><a class="nav-link" href="#">ВКонтакте · /yarsale</a></li>
+          <li><a class="nav-link" href="#">YouTube · Ямал 4K</a></li>
+          <li><a class="nav-link" href="#">TikTok · #ямал</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[11px] tracking-[0.3em] text-white/50 mb-4">ПОДЕЛИСЬ СЕВЕРОМ</div>
+        <p class="text-white/65 text-sm mb-4">Отправь другу ссылку — пусть согреется мыслью о полярной ночи.</p>
+        <button class="btn-neon share-btn" data-share="copy">
+          <span id="copyLabel2">Скопировать ссылку</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
+      <div>© 2026 Яр‑Сале · Ямальский район. Все северные права защищены.</div>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#66FCF1] animate-pulse"></span>
+        Сделано с теплом на Крайнем Севере
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ======= Cursor glow ======= */
+const glow = document.getElementById('cursorGlow');
+if (window.matchMedia('(pointer:fine)').matches) {
+  window.addEventListener('pointermove', e => {
+    glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
+  });
+} else { glow.style.display = 'none'; }
+
+/* ======= Reveal on scroll ======= */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting){
+      en.target.classList.add('in');
+      io.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ======= Animated counters ======= */
+function animateCounter(el){
+  const target = +el.dataset.counter;
+  const suffix = el.dataset.suffix || '';
+  const dur = 2200;
+  const start = performance.now();
+  function frame(t){
+    const p = Math.min(1, (t - start) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = Math.floor(target * eased);
+    el.textContent = val.toLocaleString('ru-RU') + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting){
+      animateCounter(en.target);
+      counterIO.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('[data-counter]').forEach(el => counterIO.observe(el));
+
+/* ======= Parallax aurora on scroll ======= */
+const auroraLayers = document.querySelectorAll('.aurora');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  auroraLayers.forEach((l, i) => {
+    l.style.transform = `translate3d(0, ${y * (0.05 + i*0.03)}px, 0)`;
+  });
+}, { passive:true });
+
+/* ======= Temperature / Frost interaction ======= */
+const frost = document.getElementById('frost');
+const tempBtn = document.getElementById('tempBtn');
+const tempValue = document.getElementById('tempValue');
+const tempLabel = document.getElementById('tempLabel');
+
+const tempStages = [
+  { v: '+22°', l: 'Сейчас ты в комнате. Нажимай — и почувствуй Север.' },
+  { v: '+2°',  l: 'Ты вышел на крыльцо. Куртку бы.' },
+  { v: '−18°', l: 'Декабрь в Яр‑Сале. Ресницы звенят.' },
+  { v: '−34°', l: 'Январь. Дыхание превращается в кристаллы на лету.' },
+  { v: '−52°', l: 'Абсолютный рекорд. Добро пожаловать в настоящий Ямал.' }
+];
+let tempIdx = 0;
+
+function spawnFlakes(n){
+  const chars = ['❄','❅','❆','✦','✳'];
+  for (let i=0;i<n;i++){
+    const f = document.createElement('span');
+    f.className = 'flake';
+    f.textContent = chars[Math.floor(Math.random()*chars.length)];
+    f.style.left = Math.random()*100 + 'vw';
+    f.style.fontSize = (10 + Math.random()*22) + 'px';
+    f.style.setProperty('--dx', (Math.random()*200 - 100) + 'px');
+    f.style.animationDuration = (6 + Math.random()*6) + 's';
+    f.style.animationDelay = (Math.random()*1.5) + 's';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 13000);
+  }
+}
+
+tempBtn.addEventListener('click', () => {
+  tempIdx = Math.min(tempIdx + 1, tempStages.length - 1);
+  const stage = tempStages[tempIdx];
+  tempValue.textContent = stage.v;
+  tempLabel.textContent = stage.l;
+
+  // progressive frost
+  const intensity = tempIdx / (tempStages.length - 1);
+  frost.classList.add('active');
+  frost.style.opacity = (0.25 + intensity * 0.55).toFixed(2);
+
+  spawnFlakes(40 + tempIdx * 20);
+
+  if (tempIdx === tempStages.length - 1){
+    tempBtn.innerHTML = '<span>Оттаять ←</span>';
+    tempBtn.dataset.reset = '1';
+  }
+  if (tempBtn.dataset.reset === '1' && tempIdx === tempStages.length - 1){
+    tempBtn.addEventListener('click', () => {
+      tempIdx = 0;
+      const s = tempStages[0];
+      tempValue.textContent = s.v;
+      tempLabel.textContent = s.l;
+      frost.classList.remove('active');
+      frost.style.opacity = '';
+      tempBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Узнать температуру';
+      tempBtn.dataset.reset = '';
+    }, { once:true });
+  }
+});
+
+/* ======= Share buttons ======= */
+document.querySelectorAll('.share-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const url = location.href;
+    const text = 'Яр‑Сале: Пульс ледяной пустыни — 700 000 оленей, северное сияние и 5G посреди вечной мерзлоты.';
+    const mode = btn.dataset.share;
+    if (mode === 'tg'){
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+    } else if (mode === 'vk'){
+      window.open(`https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`, '_blank');
+    } else if (mode === 'copy'){
+      try{
+        await navigator.clipboard.writeText(url);
+        document.querySelectorAll('#copyLabel, #copyLabel2').forEach(l => l.textContent = 'Скопировано ✓');
+        setTimeout(() => {
+          document.querySelectorAll('#copyLabel, #copyLabel2').forEach(l => l.textContent = 'Скопировать ссылку');
+        }, 1800);
+      } catch(e){
+        alert('Ссылка: ' + url);
+      }
+    }
+  });
+});
+
+/* ======= Tile tilt (desktop) ======= */
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('.tile').forEach(tile => {
+    tile.addEventListener('pointermove', e => {
+      const r = tile.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      tile.style.transform = `perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`;
+    });
+    tile.addEventListener('pointerleave', () => {
+      tile.style.transform = '';
+    });
+  });
+}
+</script>
+</body>
+</html>
